@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,6 @@ const Services = () => {
   };
 
   const handleBookService = (serviceName: string, servicePrice: string) => {
-    // Navigate to booking page with pre-selected service
     navigate('/booking', { 
       state: { 
         preselectedService: { 
@@ -27,135 +27,194 @@ const Services = () => {
     });
   };
 
+  // Define popular services for highlighting
+  const popularServices = [
+    "Women's Haircut", "Men's Haircut", "Women's Haircut & Blowdry", 
+    "Single Process Color", "Full Head Highlights", "Root Touch-up",
+    "Beard Trim", "Balayage", "Shoulder length blowout", "Bang trim"
+  ];
+
   const serviceCategories = {
     cuts: {
       title: 'Hair Cuts & Styling',
       services: [
-        // Men's Services
-        { category: "Men's Services", items: [
-          { name: "Men's Haircut", price: "$35" },
-          { name: "Men's Haircut & Shampoo", price: "$40" },
-          { name: "Men's Clipper Cut", price: "$30" },
-          { name: "Beard Trim", price: "$15" },
-          { name: "Mustache Trim", price: "$10" },
-          { name: "Hot Towel Shave", price: "$25" }
+        { category: "Styling Services", items: [
+          { name: "Shoulder length layered cuts", price: "$60" },
+          { name: "Shoulder to mid back length cuts", price: "$65" },
+          { name: "Waist to buttocks length cuts", price: "$70" },
+          { name: "Buttocks length cut", price: "$75" },
+          { name: "Shoulder to mid back length/layering", price: "$65" },
+          { name: "Mid back to waist length/layering", price: "$70" },
+          { name: "Shoulder length blowout", price: "$45" },
+          { name: "Shoulder length blowout with curls", price: "$50" },
+          { name: "Shoulder to waist blowout with curls", price: "$55" },
+          { name: "Waist to ballrooms blowout", price: "$60" },
+          { name: "Waist to ballrooms blowout with curls", price: "$65" }
         ]},
-        // Women's Hair Services  
         { category: "Women's Hair Services", items: [
           { name: "Women's Haircut", price: "$65" }, 
           { name: "Women's Haircut & Blowdry", price: "$85" },
-          { name: "Shampoo & Blowdry", price: "$45" },
-          { name: "Deep Conditioning Treatment", price: "$25" },
-          { name: "Hair Styling (Special Events)", price: "$75" },
-          { name: "Updo/Formal Styling", price: "$95" }
+          { name: "Frual layers", price: "$50" },
+          { name: "All over layers", price: "$55" },
+          { name: "Bang trim", price: "$15" },
+          { name: "Wash and style", price: "$35" },
+          { name: "Wash with full dry", price: "$40" },
+          { name: "Wash and blow dry", price: "$35" },
+          { name: "Gypsy treatment", price: "$65" },
+          { name: "Gels and gellate (½)", price: "$40" },
+          { name: "Keratin", price: "$160" }
         ]},
-        // Children's Services
+        { category: "Men's Hair Services", items: [
+          { name: "Men's Haircut", price: "$25" },
+          { name: "Men's regular cut", price: "$25" },
+          { name: "Men's cut with shampoo", price: "$30" },
+          { name: "Men's basic with shampoo", price: "$25" },
+          { name: "Men's style", price: "$30" },
+          { name: "Beard Trim", price: "$15" },
+          { name: "Beard trim fringe with moustache", price: "$15" },
+          { name: "Beard trim straight with beard", price: "$15" },
+          { name: "Moustache trim", price: "$8" },
+          { name: "Men's colour", price: "$40" },
+          { name: "Men's cut with colour", price: "$50" },
+          { name: "Beard and cut colour", price: "$55" },
+          { name: "Men's cut and colour", price: "$55" }
+        ]},
         { category: "Children's Services", items: [
           { name: "Child Haircut (12 & under)", price: "$25" },
-          { name: "Child Haircut (13-17)", price: "$35" },
-          { name: "Bang Trim", price: "$15" }
+          { name: "Child Haircut (13-17)", price: "$35" }
         ]}
       ]
     },
     coloring: {
       title: 'Hair Coloring & Chemical Services',
       services: [
-        // Full Color Services
         { category: "Full Color Services", items: [
           { name: "Single Process Color", price: "$85" },
-          { name: "Double Process Color", price: "$150" },
-          { name: "All Over Bleach", price: "$120" },
-          { name: "Color Correction", price: "$200+" },
           { name: "Root Touch-up", price: "$65" },
-          { name: "Gray Coverage", price: "$75" }
+          { name: "Root touch up", price: "$60" },
+          { name: "Shoulder length", price: "$70" },
+          { name: "Mid back", price: "$80" },
+          { name: "Shoulder Ombre", price: "$90" },
+          { name: "Waist length", price: "$110" },
+          { name: "Lower back", price: "$120" },
+          { name: "Down to ballroom", price: "$140" },
+          { name: "Foilayage", price: "$160" }
         ]},
-        // Highlight Services
+        { category: "Ammonia Free Color Services", items: [
+          { name: "Root touch up", price: "$70" },
+          { name: "Shoulder length", price: "$80" },
+          { name: "½ part shoulder", price: "$60" },
+          { name: "Shoulder foilays", price: "$90" },
+          { name: "Mid back", price: "$100" },
+          { name: "Waist length", price: "$110" },
+          { name: "Lower back", price: "$120" },
+          { name: "Down to ballroom", price: "$140" },
+          { name: "Foilayage", price: "$160" }
+        ]},
         { category: "Highlight & Lowlight Services", items: [
           { name: "Full Head Highlights", price: "$140" },
-          { name: "Partial Highlights", price: "$95" },
-          { name: "Cap Highlights", price: "$85" },
-          { name: "Foil Highlights", price: "$120" },
-          { name: "Balayage", price: "$180" },
-          { name: "Ombre", price: "$160" },
-          { name: "Lowlights", price: "$110" }
+          { name: "Full head neck line", price: "$70" },
+          { name: "Full head shoulder length", price: "$90" },
+          { name: "Full head ½ past shoulder", price: "$100" },
+          { name: "Full head mid back", price: "$110" },
+          { name: "Full head shoulder foilays", price: "$100" },
+          { name: "Full head Shoulder foilays", price: "$110" },
+          { name: "Full head mid back", price: "$120" },
+          { name: "Full head waist back", price: "$130" },
+          { name: "Full head waist length", price: "$140" },
+          { name: "Full head lower back", price: "$150" },
+          { name: "Full head lower back", price: "$160" },
+          { name: "Full head down to ballroom", price: "$200" },
+          { name: "Full head down to ballroom", price: "$180" }
         ]},
-        // Specialty Color
         { category: "Specialty Color Services", items: [
-          { name: "Fashion Colors", price: "$100+" },
-          { name: "Color Gloss/Glaze", price: "$45" },
-          { name: "Toner Application", price: "$35" },
-          { name: "Color Refresh", price: "$55" }
+          { name: "Balayage", price: "$180" },
+          { name: "½ part shoulder", price: "$100" },
+          { name: "Shoulder foilays", price: "$120" },
+          { name: "Mid back", price: "$140" },
+          { name: "Waist length", price: "$160" },
+          { name: "Lower back", price: "$180" },
+          { name: "Down to ballroom", price: "$200" },
+          { name: "Full foxing", price: "$220" }
+        ]},
+        { category: "Toning Services", items: [
+          { name: "Neck line", price: "$30" },
+          { name: "½ part shoulder", price: "$40" },
+          { name: "Shoulder foilays", price: "$50" },
+          { name: "Mid back", price: "$60" },
+          { name: "Waist length", price: "$70" },
+          { name: "Lower back", price: "$80" },
+          { name: "Down to ballroom", price: "$90" },
+          { name: "Foilayage", price: "$110" }
         ]}
       ]
     },
-    chemical: {
-      title: 'Chemical Services & Treatments',
+    services: {
+      title: 'Beauty & Spa Services',
       services: [
-        // Perming Services
-        { category: "Perming Services", items: [
-          { name: "Body Wave", price: "$95" },
-          { name: "Spiral Perm", price: "$120" },
-          { name: "Partial Perm", price: "$75" },
-          { name: "Digital Perm", price: "$200" }
+        { category: "Updo and Makeup Services", items: [
+          { name: "Updo", price: "$60" },
+          { name: "Party makeup", price: "$50" },
+          { name: "Light and party makeup", price: "$40" }
         ]},
-        // Relaxing Services
-        { category: "Relaxing & Straightening", items: [
-          { name: "Chemical Relaxer", price: "$85" },
-          { name: "Keratin Treatment", price: "$250" },
-          { name: "Japanese Straightening", price: "$300" },
-          { name: "Brazilian Blowout", price: "$200" }
-        ]},
-        // Hair Treatments
-        { category: "Hair Treatments", items: [
-          { name: "Deep Conditioning Mask", price: "$35" },
-          { name: "Protein Treatment", price: "$45" },
-          { name: "Scalp Treatment", price: "$40" },
-          { name: "Hot Oil Treatment", price: "$30" },
-          { name: "Olaplex Treatment", price: "$55" }
+        { category: "Threading Services", items: [
+          { name: "Eyebrows", price: "$8" },
+          { name: "Upper lip", price: "$5" },
+          { name: "Chin", price: "$5" },
+          { name: "Forehead", price: "$8" },
+          { name: "Lower lip", price: "$5" },
+          { name: "Cheeks", price: "$10" },
+          { name: "Sideburn", price: "$10" },
+          { name: "Full face", price: "$35" },
+          { name: "Full face with neck", price: "$40" }
         ]}
       ]
     },
-    extensions: {
-      title: 'Hair Extensions & Add-ons',
+    waxing: {
+      title: 'Waxing Services',
       services: [
-        // Extension Services
-        { category: "Hair Extension Services", items: [
-          { name: "Tape-in Extensions", price: "$200+" },
-          { name: "Clip-in Extensions (Install)", price: "$50" },
-          { name: "Sew-in Extensions", price: "$150+" },
-          { name: "Fusion Extensions", price: "$300+" },
-          { name: "Extension Removal", price: "$75" },
-          { name: "Extension Maintenance", price: "$100" }
+        { category: "Facial Waxing", items: [
+          { name: "Eyebrows", price: "$8" },
+          { name: "Upper lip", price: "$5" },
+          { name: "Lower lip", price: "$5" },
+          { name: "Forehead", price: "$8" },
+          { name: "Cheeks", price: "$10" },
+          { name: "Sideburn", price: "$10" },
+          { name: "Full face", price: "$35" },
+          { name: "Full face with neck", price: "$40" }
         ]},
-        // Specialty Services
-        { category: "Specialty Add-on Services", items: [
-          { name: "Hair Tinsel/Glitter", price: "$25" },
-          { name: "Temporary Color", price: "$35" },
-          { name: "Hair Chalk", price: "$20" },
-          { name: "Braiding Service", price: "$45+" }
-        ]}
-      ]
-    },
-    bridal: {
-      title: 'Bridal & Special Events',
-      services: [
-        // Bridal Services
-        { category: "Bridal Hair Services", items: [
-          { name: "Bridal Hair Trial", price: "$85" },
-          { name: "Bridal Hair (Wedding Day)", price: "$150" },
-          { name: "Bridesmaid Hair", price: "$75" },
-          { name: "Mother of Bride/Groom Hair", price: "$85" },
-          { name: "Flower Girl Hair", price: "$45" }
+        { category: "Body Waxing", items: [
+          { name: "Full arms", price: "$35" },
+          { name: "Half arms", price: "$25" },
+          { name: "Under arms", price: "$15" },
+          { name: "Full leg", price: "$45" },
+          { name: "Half leg", price: "$30" },
+          { name: "Bikini", price: "$40" },
+          { name: "Brazilian", price: "$60" },
+          { name: "Shoulders", price: "$20" },
+          { name: "Full back", price: "$40" },
+          { name: "Half back", price: "$25" },
+          { name: "Full stomach", price: "$25" },
+          { name: "Half stomach", price: "$15" },
+          { name: "Belly button", price: "$8" },
+          { name: "Chest", price: "$30" },
+          { name: "Toes", price: "$10" },
+          { name: "Full body", price: "$180" }
         ]},
-        // Special Event Services
-        { category: "Special Event Services", items: [
-          { name: "Prom/Formal Hair", price: "$95" },
-          { name: "Special Occasion Updo", price: "$85" },
-          { name: "Photo Shoot Hair", price: "$120" },
-          { name: "On-Location Services", price: "$150+" }
+        { category: "Men's Waxing", items: [
+          { name: "Eyebrows", price: "$8" },
+          { name: "Shoulder waxing", price: "$20" },
+          { name: "Back waxing", price: "$35" },
+          { name: "Chest waxing", price: "$30" },
+          { name: "Arm waxing", price: "$30" },
+          { name: "Ears wax", price: "$8" }
         ]}
       ]
     }
+  };
+
+  const isPopularService = (serviceName: string) => {
+    return popularServices.includes(serviceName);
   };
 
   return (
@@ -196,21 +255,34 @@ const Services = () => {
                         {serviceGroup.category}
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {serviceGroup.items.map((service, serviceIndex) => (
-                          <div key={serviceIndex} className="flex justify-between items-center p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group">
-                            <div className="flex-1">
-                              <span className="text-gray-700">{service.name}</span>
-                              <span className="text-rose-600 font-semibold ml-4">{service.price}</span>
-                            </div>
-                            <button
-                              onClick={() => handleBookService(service.name, service.price)}
-                              className="ml-4 bg-rose-600 hover:bg-rose-700 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                        {serviceGroup.items.map((service, serviceIndex) => {
+                          const isPopular = isPopularService(service.name);
+                          return (
+                            <div 
+                              key={serviceIndex} 
+                              className={`flex justify-between items-center p-3 rounded-lg transition-colors duration-200 group ${
+                                isPopular 
+                                  ? 'bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-200' 
+                                  : 'hover:bg-gray-50'
+                              }`}
                             >
-                              <Calendar className="w-3 h-3" />
-                              Book
-                            </button>
-                          </div>
-                        ))}
+                              <div className="flex-1">
+                                <span className={`${isPopular ? 'font-semibold text-gray-900' : 'text-gray-700'}`}>
+                                  {service.name}
+                                  {isPopular && <span className="ml-2 text-xs bg-rose-600 text-white px-2 py-1 rounded-full">Popular</span>}
+                                </span>
+                                <span className="text-rose-600 font-semibold ml-4">{service.price}</span>
+                              </div>
+                              <button
+                                onClick={() => handleBookService(service.name, service.price)}
+                                className="ml-4 bg-rose-600 hover:bg-rose-700 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1 transition-all duration-200"
+                              >
+                                <Calendar className="w-3 h-3" />
+                                Book
+                              </button>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                   ))}
