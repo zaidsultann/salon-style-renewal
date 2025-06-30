@@ -1,9 +1,10 @@
-
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Services = () => {
   const [openSections, setOpenSections] = useState<string[]>(['cuts']);
+  const navigate = useNavigate();
 
   const toggleSection = (section: string) => {
     setOpenSections(prev => 
@@ -11,6 +12,19 @@ const Services = () => {
         ? prev.filter(s => s !== section)
         : [...prev, section]
     );
+  };
+
+  const handleBookService = (serviceName: string, servicePrice: string) => {
+    // Navigate to booking page with pre-selected service
+    navigate('/booking', { 
+      state: { 
+        preselectedService: { 
+          name: serviceName, 
+          price: servicePrice,
+          category: 'Pre-selected'
+        } 
+      } 
+    });
   };
 
   const serviceCategories = {
@@ -183,9 +197,18 @@ const Services = () => {
                       </h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {serviceGroup.items.map((service, serviceIndex) => (
-                          <div key={serviceIndex} className="flex justify-between items-center p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                            <span className="text-gray-700">{service.name}</span>
-                            <span className="text-rose-600 font-semibold">{service.price}</span>
+                          <div key={serviceIndex} className="flex justify-between items-center p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 group">
+                            <div className="flex-1">
+                              <span className="text-gray-700">{service.name}</span>
+                              <span className="text-rose-600 font-semibold ml-4">{service.price}</span>
+                            </div>
+                            <button
+                              onClick={() => handleBookService(service.name, service.price)}
+                              className="ml-4 bg-rose-600 hover:bg-rose-700 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                            >
+                              <Calendar className="w-3 h-3" />
+                              Book
+                            </button>
                           </div>
                         ))}
                       </div>

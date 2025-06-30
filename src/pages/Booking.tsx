@@ -1,36 +1,43 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
+import ServiceSelectionDialog from '@/components/ServiceSelectionDialog';
+import { Plus, X } from 'lucide-react';
+
+interface Service {
+  name: string;
+  price: string;
+  category: string;
+}
 
 const Booking = () => {
   const { toast } = useToast();
+  const location = useLocation();
+  const [selectedServices, setSelectedServices] = useState<Service[]>([]);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
-    service: '',
     date: '',
     time: '',
     message: ''
   });
-
-  const services = [
-    'Hair Cut',
-    'Hair Color',
-    'Highlights',
-    'Balayage', 
-    'Styling/Blowout',
-    'Treatment',
-    'Wedding/Special Event',
-    'Consultation'
-  ];
 
   const timeSlots = [
     '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
     '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM',
     '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM'
   ];
+
+  // Handle pre-selected service from Services page
+  useEffect(() => {
+    if (location.state?.preselectedService) {
+      setSelectedServices([location.state.preselectedService]);
+    }
+  }, [location.state]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -41,22 +48,48 @@ const Booking = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Booking submitted:', formData);
+    
+    if (selectedServices.length === 0) {
+      toast({
+        title: "Please select at least one service",
+        description: "You must select a service to book an appointment.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    console.log('Booking submitted:', {
+      ...formData,
+      services: selectedServices
+    });
+    
     toast({
       title: "Booking Request Submitted!",
-      description: "We'll contact you within 24 hours to confirm your appointment.",
+      description: `We'll contact you within 24 hours to confirm your appointment for ${selectedServices.length} service${selectedServices.length > 1 ? 's' : ''}.`,
     });
+    
     // Reset form
     setFormData({
       firstName: '',
       lastName: '',
       email: '',
       phone: '',
-      service: '',
       date: '',
       time: '',
       message: ''
     });
+    setSelectedServices([]);
+  };
+
+  const removeService = (serviceName: string) => {
+    setSelectedServices(selectedServices.filter(s => s.name !== serviceName));
+  };
+
+  const calculateTotal = () => {
+    return selectedServices.reduce((total, service) => {
+      const price = parseFloat(service.price.replace(/[^0-9.]/g, '')) || 0;
+      return total + price;
+    }, 0);
   };
 
   return (
@@ -139,22 +172,56 @@ const Booking = () => {
 
             {/* Service Selection */}
             <div>
-              <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                Service *
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Services * {selectedServices.length > 0 && (
+                  <span className="text-rose-600">({selectedServices.length} selected)</span>
+                )}
               </label>
-              <select
-                id="service"
-                name="service"
-                required
-                value={formData.service}
-                onChange={handleChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
-              >
-                <option value="">Select a service</option>
-                {services.map((service) => (
-                  <option key={service} value={service}>{service}</option>
-                ))}
-              </select>
+              
+              {/* Selected Services Display */}
+              {selectedServices.length > 0 && (
+                <div className="mb-4 p-4 bg-rose-50 rounded-lg">
+                  <div className="space-y-2">
+                    {selectedServices.map((service, index) => (
+                      <div key={index} className="flex items-center justify-between p-2 bg-white rounded border">
+                        <div>
+                          <span className="font-medium text-gray-900">{service.name}</span>
+                          <span className="text-rose-600 font-semibold ml-2">{service.price}</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeService(service.name)}
+                          className="text-red-500 hover:text-red-700 p-1"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    ))}
+                    <div className="text-right pt-2 border-t">
+                      <span className="text-lg font-semibold text-gray-900">
+                        Estimated Total: ${calculateTotal().toFixed(2)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Service Selection Buttons */}
+              <div className="space-y-3">
+                <ServiceSelectionDialog
+                  selectedServices={selectedServices}
+                  onServicesChange={setSelectedServices}
+                >
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full py-3 border-2 border-dashed border-gray-300 hover:border-rose-500 hover:bg-rose-50"
+                  >
+                    <Plus className="w-5 h-5 mr-2" />
+                    {selectedServices.length === 0 ? 'Select Services' : 'Add More Services'}
+                  </Button>
+                </ServiceSelectionDialog>
+              </div>
             </div>
 
             {/* Date and Time */}
@@ -205,7 +272,7 @@ const Booking = () => {
                 rows={4}
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Any special requests or questions?"
+                placeholder="Any special requests or questions about your selected services?"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
               ></textarea>
             </div>
@@ -217,6 +284,11 @@ const Booking = () => {
                 className="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-4 rounded-full text-lg transition-colors duration-300 shadow-lg"
               >
                 Submit Booking Request
+                {selectedServices.length > 0 && (
+                  <span className="ml-2">
+                    (${calculateTotal().toFixed(2)} est.)
+                  </span>
+                )}
               </button>
             </div>
           </form>
