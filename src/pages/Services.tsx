@@ -1,44 +1,145 @@
 
 import React, { useState } from 'react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const Services = () => {
-  const [activeCategory, setActiveCategory] = useState('cuts');
+  const [openSections, setOpenSections] = useState<string[]>(['cuts']);
+
+  const toggleSection = (section: string) => {
+    setOpenSections(prev => 
+      prev.includes(section) 
+        ? prev.filter(s => s !== section)
+        : [...prev, section]
+    );
+  };
 
   const serviceCategories = {
     cuts: {
-      title: 'Hair Cuts',
+      title: 'Hair Cuts & Styling',
       services: [
-        { name: 'Women\'s Cut', price: '$65', description: 'Precision cut with wash and style' },
-        { name: 'Men\'s Cut', price: '$45', description: 'Classic and modern men\'s cuts' },
-        { name: 'Children\'s Cut', price: '$35', description: 'Gentle cuts for kids under 12' },
-        { name: 'Bang Trim', price: '$20', description: 'Quick fringe refresh' }
+        // Men's Services
+        { category: "Men's Services", items: [
+          { name: "Men's Haircut", price: "$35" },
+          { name: "Men's Haircut & Shampoo", price: "$40" },
+          { name: "Men's Clipper Cut", price: "$30" },
+          { name: "Beard Trim", price: "$15" },
+          { name: "Mustache Trim", price: "$10" },
+          { name: "Hot Towel Shave", price: "$25" }
+        ]},
+        // Women's Hair Services  
+        { category: "Women's Hair Services", items: [
+          { name: "Women's Haircut", price: "$65" }, 
+          { name: "Women's Haircut & Blowdry", price: "$85" },
+          { name: "Shampoo & Blowdry", price: "$45" },
+          { name: "Deep Conditioning Treatment", price: "$25" },
+          { name: "Hair Styling (Special Events)", price: "$75" },
+          { name: "Updo/Formal Styling", price: "$95" }
+        ]},
+        // Children's Services
+        { category: "Children's Services", items: [
+          { name: "Child Haircut (12 & under)", price: "$25" },
+          { name: "Child Haircut (13-17)", price: "$35" },
+          { name: "Bang Trim", price: "$15" }
+        ]}
       ]
     },
-    color: {
-      title: 'Hair Coloring',
+    coloring: {
+      title: 'Hair Coloring & Chemical Services',
       services: [
-        { name: 'Full Color', price: '$120', description: 'Complete color transformation' },
-        { name: 'Highlights', price: '$140', description: 'Partial or full highlights' },
-        { name: 'Balayage', price: '$180', description: 'Hand-painted highlights' },
-        { name: 'Root Touch-up', price: '$85', description: 'Cover gray roots' }
+        // Full Color Services
+        { category: "Full Color Services", items: [
+          { name: "Single Process Color", price: "$85" },
+          { name: "Double Process Color", price: "$150" },
+          { name: "All Over Bleach", price: "$120" },
+          { name: "Color Correction", price: "$200+" },
+          { name: "Root Touch-up", price: "$65" },
+          { name: "Gray Coverage", price: "$75" }
+        ]},
+        // Highlight Services
+        { category: "Highlight & Lowlight Services", items: [
+          { name: "Full Head Highlights", price: "$140" },
+          { name: "Partial Highlights", price: "$95" },
+          { name: "Cap Highlights", price: "$85" },
+          { name: "Foil Highlights", price: "$120" },
+          { name: "Balayage", price: "$180" },
+          { name: "Ombre", price: "$160" },
+          { name: "Lowlights", price: "$110" }
+        ]},
+        // Specialty Color
+        { category: "Specialty Color Services", items: [
+          { name: "Fashion Colors", price: "$100+" },
+          { name: "Color Gloss/Glaze", price: "$45" },
+          { name: "Toner Application", price: "$35" },
+          { name: "Color Refresh", price: "$55" }
+        ]}
       ]
     },
-    styling: {
-      title: 'Styling & Special Occasions',
+    chemical: {
+      title: 'Chemical Services & Treatments',
       services: [
-        { name: 'Blowout', price: '$45', description: 'Professional wash and style' },
-        { name: 'Updo', price: '$85', description: 'Elegant formal styling' },
-        { name: 'Wedding Hair', price: '$150', description: 'Bridal hair styling' },
-        { name: 'Curls & Waves', price: '$55', description: 'Beautiful curls or waves' }
+        // Perming Services
+        { category: "Perming Services", items: [
+          { name: "Body Wave", price: "$95" },
+          { name: "Spiral Perm", price: "$120" },
+          { name: "Partial Perm", price: "$75" },
+          { name: "Digital Perm", price: "$200" }
+        ]},
+        // Relaxing Services
+        { category: "Relaxing & Straightening", items: [
+          { name: "Chemical Relaxer", price: "$85" },
+          { name: "Keratin Treatment", price: "$250" },
+          { name: "Japanese Straightening", price: "$300" },
+          { name: "Brazilian Blowout", price: "$200" }
+        ]},
+        // Hair Treatments
+        { category: "Hair Treatments", items: [
+          { name: "Deep Conditioning Mask", price: "$35" },
+          { name: "Protein Treatment", price: "$45" },
+          { name: "Scalp Treatment", price: "$40" },
+          { name: "Hot Oil Treatment", price: "$30" },
+          { name: "Olaplex Treatment", price: "$55" }
+        ]}
       ]
     },
-    treatments: {
-      title: 'Hair Treatments',
+    extensions: {
+      title: 'Hair Extensions & Add-ons',
       services: [
-        { name: 'Deep Conditioning', price: '$60', description: 'Intensive moisture treatment' },
-        { name: 'Keratin Treatment', price: '$250', description: 'Smoothing treatment' },
-        { name: 'Scalp Treatment', price: '$75', description: 'Nourishing scalp therapy' },
-        { name: 'Hair Glossing', price: '$95', description: 'Shine and color enhancement' }
+        // Extension Services
+        { category: "Hair Extension Services", items: [
+          { name: "Tape-in Extensions", price: "$200+" },
+          { name: "Clip-in Extensions (Install)", price: "$50" },
+          { name: "Sew-in Extensions", price: "$150+" },
+          { name: "Fusion Extensions", price: "$300+" },
+          { name: "Extension Removal", price: "$75" },
+          { name: "Extension Maintenance", price: "$100" }
+        ]},
+        // Specialty Services
+        { category: "Specialty Add-on Services", items: [
+          { name: "Hair Tinsel/Glitter", price: "$25" },
+          { name: "Temporary Color", price: "$35" },
+          { name: "Hair Chalk", price: "$20" },
+          { name: "Braiding Service", price: "$45+" }
+        ]}
+      ]
+    },
+    bridal: {
+      title: 'Bridal & Special Events',
+      services: [
+        // Bridal Services
+        { category: "Bridal Hair Services", items: [
+          { name: "Bridal Hair Trial", price: "$85" },
+          { name: "Bridal Hair (Wedding Day)", price: "$150" },
+          { name: "Bridesmaid Hair", price: "$75" },
+          { name: "Mother of Bride/Groom Hair", price: "$85" },
+          { name: "Flower Girl Hair", price: "$45" }
+        ]},
+        // Special Event Services
+        { category: "Special Event Services", items: [
+          { name: "Prom/Formal Hair", price: "$95" },
+          { name: "Special Occasion Updo", price: "$85" },
+          { name: "Photo Shoot Hair", price: "$120" },
+          { name: "On-Location Services", price: "$150+" }
+        ]}
       ]
     }
   };
@@ -48,70 +149,91 @@ const Services = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">
-            Our Services
+            Our Services & Pricing
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Professional hair services tailored to your unique style and needs
+            Professional hair services with transparent pricing. All services include consultation.
           </p>
         </div>
 
-        {/* Service Category Tabs */}
-        <div className="flex flex-wrap justify-center mb-12 gap-4">
+        {/* Service Categories */}
+        <div className="max-w-5xl mx-auto space-y-4">
           {Object.entries(serviceCategories).map(([key, category]) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(key)}
-              className={`px-6 py-3 rounded-full font-semibold transition-colors duration-300 ${
-                activeCategory === key
-                  ? 'bg-rose-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {category.title}
-            </button>
+            <div key={key} className="border border-gray-200 rounded-lg overflow-hidden">
+              <button
+                onClick={() => toggleSection(key)}
+                className="w-full px-6 py-4 bg-gradient-to-r from-rose-50 to-amber-50 flex justify-between items-center hover:from-rose-100 hover:to-amber-100 transition-all duration-300"
+              >
+                <h2 className="text-2xl font-serif font-bold text-gray-900">
+                  {category.title}
+                </h2>
+                {openSections.includes(key) ? (
+                  <ChevronUp className="w-6 h-6 text-rose-600" />
+                ) : (
+                  <ChevronDown className="w-6 h-6 text-rose-600" />
+                )}
+              </button>
+              
+              {openSections.includes(key) && (
+                <div className="p-6 bg-white">
+                  {category.services.map((serviceGroup, groupIndex) => (
+                    <div key={groupIndex} className="mb-8 last:mb-0">
+                      <h3 className="text-lg font-semibold text-gray-800 mb-4 border-b border-gray-200 pb-2">
+                        {serviceGroup.category}
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {serviceGroup.items.map((service, serviceIndex) => (
+                          <div key={serviceIndex} className="flex justify-between items-center p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                            <span className="text-gray-700">{service.name}</span>
+                            <span className="text-rose-600 font-semibold">{service.price}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
 
-        {/* Service Content */}
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-serif font-bold text-center mb-8">
-            {serviceCategories[activeCategory].title}
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {serviceCategories[activeCategory].services.map((service, index) => (
-              <div key={index} className="bg-gray-50 p-6 rounded-lg">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-semibold text-gray-900">{service.name}</h3>
-                  <span className="text-rose-600 font-bold text-lg">{service.price}</span>
-                </div>
-                <p className="text-gray-600">{service.description}</p>
+        {/* Additional Information */}
+        <div className="mt-16 bg-gradient-to-r from-rose-50 to-amber-50 rounded-lg p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
+                Important Notes
+              </h3>
+              <ul className="text-gray-600 space-y-2">
+                <li>• All prices are starting prices and may vary based on hair length and condition</li>
+                <li>• Color correction pricing determined after consultation</li>
+                <li>• Extension prices vary based on hair type and length needed</li>
+                <li>• Bridal services require advance booking and trial recommended</li>
+                <li>• On-location services include travel fee</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
+                Book Your Service
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Ready to schedule your appointment? Contact us for a consultation or book online.
+              </p>
+              <div className="space-y-3">
+                <a
+                  href="/booking"
+                  className="inline-block w-full md:w-auto bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full text-center transition-colors duration-300"
+                >
+                  Book Online
+                </a>
+                <a
+                  href="tel:905-555-4567"
+                  className="inline-block w-full md:w-auto ml-0 md:ml-4 border-2 border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white font-semibold px-8 py-3 rounded-full text-center transition-all duration-300"
+                >
+                  Call (905) 555-4567
+                </a>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="text-center mt-16 p-8 bg-gradient-to-r from-rose-50 to-amber-50 rounded-lg">
-          <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
-            Ready to Book?
-          </h3>
-          <p className="text-gray-600 mb-6">
-            Contact us to schedule your appointment or consultation
-          </p>
-          <div className="space-x-4">
-            <a
-              href="/booking"
-              className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300"
-            >
-              Book Online
-            </a>
-            <a
-              href="tel:905-555-4567"
-              className="inline-block border-2 border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
-            >
-              Call Now
-            </a>
+            </div>
           </div>
         </div>
       </div>
