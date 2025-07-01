@@ -23,17 +23,17 @@ const OperatingHours = () => {
 
         <div className="max-w-md mx-auto">
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-            <div className="p-6">
-              <div className="space-y-3">
+            <div className="p-4 md:p-6">
+              <div className="space-y-2 md:space-y-3">
                 {hours.map((schedule, index) => (
                   <div 
                     key={index} 
-                    className="flex items-center justify-between py-3 px-4 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between py-2 md:py-3 px-3 md:px-4 bg-gradient-to-r from-rose-50 to-amber-50 rounded-lg"
                   >
-                    <span className="font-medium text-gray-900 text-sm">
+                    <span className="font-medium text-gray-900 text-sm md:text-base">
                       {schedule.day}
                     </span>
-                    <div className="flex items-center space-x-2 text-sm">
+                    <div className="flex items-center space-x-1 md:space-x-2 text-sm md:text-base">
                       <span className="text-gray-700">{schedule.open}</span>
                       <span className="text-gray-400">-</span>
                       <span className="text-gray-700">{schedule.close}</span>

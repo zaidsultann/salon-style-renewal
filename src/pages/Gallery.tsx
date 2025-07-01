@@ -5,51 +5,81 @@ const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const galleryItems = [
-    // Hair Cuts
-    { id: 1, category: 'cuts', title: 'Modern Bob Cut', image: '[Image: Stylish bob haircut]' },
-    { id: 2, category: 'cuts', title: 'Layered Cut', image: '[Image: Layered hairstyle]' },
-    { id: 3, category: 'cuts', title: 'Pixie Cut', image: '[Image: Chic pixie cut]' },
-    { id: 4, category: 'cuts', title: 'Long Layers', image: '[Image: Long layered hair]' },
-    { id: 5, category: 'cuts', title: 'Shag Cut', image: '[Image: Modern shag cut]' },
-    { id: 6, category: 'cuts', title: 'Blunt Cut', image: '[Image: Sleek blunt cut]' },
-    { id: 7, category: 'cuts', title: 'Textured Lob', image: '[Image: Textured long bob]' },
-    { id: 8, category: 'cuts', title: 'Curtain Bangs', image: '[Image: Face-framing curtain bangs]' },
+    // Hair Cuts (expanded)
+    { id: 1, category: 'cuts', title: 'Modern Bob Cut', image: '/public/images/gallery/bob-cut.jpg' },
+    { id: 2, category: 'cuts', title: 'Layered Cut', image: '/public/images/gallery/layered-cut.jpg' },
+    { id: 3, category: 'cuts', title: 'Pixie Cut', image: '/public/images/gallery/pixie-cut.jpg' },
+    { id: 4, category: 'cuts', title: 'Long Layers', image: '/public/images/gallery/long-layers.jpg' },
+    { id: 5, category: 'cuts', title: 'Shag Cut', image: '/public/images/gallery/shag-cut.jpg' },
+    { id: 6, category: 'cuts', title: 'Blunt Cut', image: '/public/images/gallery/blunt-cut.jpg' },
+    { id: 7, category: 'cuts', title: 'Textured Lob', image: '/public/images/gallery/textured-lob.jpg' },
+    { id: 8, category: 'cuts', title: 'Curtain Bangs', image: '/public/images/gallery/curtain-bangs.jpg' },
+    { id: 9, category: 'cuts', title: 'Asymmetrical Cut', image: '/public/images/gallery/asymmetrical.jpg' },
+    { id: 10, category: 'cuts', title: 'Face-Framing Layers', image: '/public/images/gallery/face-framing.jpg' },
+    { id: 11, category: 'cuts', title: 'Wolf Cut', image: '/public/images/gallery/wolf-cut.jpg' },
+    { id: 12, category: 'cuts', title: 'Classic Bob', image: '/public/images/gallery/classic-bob.jpg' },
     
-    // Hair Color
-    { id: 9, category: 'color', title: 'Balayage Highlights', image: '[Image: Beautiful balayage]' },
-    { id: 10, category: 'color', title: 'Ombre Color', image: '[Image: Ombre hair color]' },
-    { id: 11, category: 'color', title: 'Full Highlight', image: '[Image: Full head highlights]' },
-    { id: 12, category: 'color', title: 'Fashion Color', image: '[Image: Creative hair colors]' },
-    { id: 13, category: 'color', title: 'Root Touch-up', image: '[Image: Natural root color]' },
-    { id: 14, category: 'color', title: 'Lowlights', image: '[Image: Dimensional lowlights]' },
-    { id: 15, category: 'color', title: 'Color Correction', image: '[Image: Color correction work]' },
-    { id: 16, category: 'color', title: 'Platinum Blonde', image: '[Image: Platinum blonde hair]' },
+    // Hair Color (expanded)
+    { id: 13, category: 'color', title: 'Balayage Highlights', image: '/public/images/gallery/balayage.jpg' },
+    { id: 14, category: 'color', title: 'Ombre Color', image: '/public/images/gallery/ombre.jpg' },
+    { id: 15, category: 'color', title: 'Full Highlights', image: '/public/images/gallery/full-highlights.jpg' },
+    { id: 16, category: 'color', title: 'Fashion Colors', image: '/public/images/gallery/fashion-colors.jpg' },
+    { id: 17, category: 'color', title: 'Root Touch-up', image: '/public/images/gallery/root-touchup.jpg' },
+    { id: 18, category: 'color', title: 'Lowlights', image: '/public/images/gallery/lowlights.jpg' },
+    { id: 19, category: 'color', title: 'Color Correction', image: '/public/images/gallery/color-correction.jpg' },
+    { id: 20, category: 'color', title: 'Platinum Blonde', image: '/public/images/gallery/platinum.jpg' },
+    { id: 21, category: 'color', title: 'Copper Tones', image: '/public/images/gallery/copper.jpg' },
+    { id: 22, category: 'color', title: 'Chocolate Brown', image: '/public/images/gallery/chocolate-brown.jpg' },
+    { id: 23, category: 'color', title: 'Ash Blonde', image: '/public/images/gallery/ash-blonde.jpg' },
+    { id: 24, category: 'color', title: 'Red Highlights', image: '/public/images/gallery/red-highlights.jpg' },
     
-    // Hair Styling
-    { id: 17, category: 'styling', title: 'Wedding Updo', image: '[Image: Elegant bridal hair]' },
-    { id: 18, category: 'styling', title: 'Beach Waves', image: '[Image: Natural beach waves]' },
-    { id: 19, category: 'styling', title: 'Formal Style', image: '[Image: Formal hair styling]' },
-    { id: 20, category: 'styling', title: 'Curly Blowout', image: '[Image: Voluminous curls]' },
-    { id: 21, category: 'styling', title: 'Sleek Straight', image: '[Image: Sleek straight hair]' },
-    { id: 22, category: 'styling', title: 'Half-Up Style', image: '[Image: Half-up hairstyle]' },
-    { id: 23, category: 'styling', title: 'Braided Updo', image: '[Image: Intricate braided updo]' },
-    { id: 24, category: 'styling', title: 'Vintage Waves', image: '[Image: Classic vintage waves]' },
+    // Hair Styling (expanded)
+    { id: 25, category: 'styling', title: 'Wedding Updo', image: '/public/images/gallery/wedding-updo.jpg' },
+    { id: 26, category: 'styling', title: 'Beach Waves', image: '/public/images/gallery/beach-waves.jpg' },
+    { id: 27, category: 'styling', title: 'Formal Style', image: '/public/images/gallery/formal-style.jpg' },
+    { id: 28, category: 'styling', title: 'Curly Blowout', image: '/public/images/gallery/curly-blowout.jpg' },
+    { id: 29, category: 'styling', title: 'Sleek Straight', image: '/public/images/gallery/sleek-straight.jpg' },
+    { id: 30, category: 'styling', title: 'Half-Up Style', image: '/public/images/gallery/half-up.jpg' },
+    { id: 31, category: 'styling', title: 'Braided Updo', image: '/public/images/gallery/braided-updo.jpg' },
+    { id: 32, category: 'styling', title: 'Vintage Waves', image: '/public/images/gallery/vintage-waves.jpg' },
+    { id: 33, category: 'styling', title: 'Messy Bun', image: '/public/images/gallery/messy-bun.jpg' },
+    { id: 34, category: 'styling', title: 'Side Swept', image: '/public/images/gallery/side-swept.jpg' },
+    { id: 35, category: 'styling', title: 'Twisted Updo', image: '/public/images/gallery/twisted-updo.jpg' },
+    { id: 36, category: 'styling', title: 'Voluminous Curls', image: '/public/images/gallery/voluminous-curls.jpg' },
     
-    // Treatments
-    { id: 25, category: 'treatments', title: 'Keratin Treatment', image: '[Image: Smooth keratin results]' },
-    { id: 26, category: 'treatments', title: 'Deep Conditioning', image: '[Image: Healthy conditioned hair]' },
-    { id: 27, category: 'treatments', title: 'Scalp Treatment', image: '[Image: Scalp care session]' },
-    { id: 28, category: 'treatments', title: 'Hair Repair', image: '[Image: Damaged hair restoration]' },
-    { id: 29, category: 'treatments', title: 'Glossing Service', image: '[Image: Shiny glossed hair]' },
-    { id: 30, category: 'treatments', title: 'Protein Treatment', image: '[Image: Strengthened hair]' },
+    // Treatments (expanded)
+    { id: 37, category: 'treatments', title: 'Keratin Treatment', image: '/public/images/gallery/keratin.jpg' },
+    { id: 38, category: 'treatments', title: 'Deep Conditioning', image: '/public/images/gallery/deep-conditioning.jpg' },
+    { id: 39, category: 'treatments', title: 'Scalp Treatment', image: '/public/images/gallery/scalp-treatment.jpg' },
+    { id: 40, category: 'treatments', title: 'Hair Repair', image: '/public/images/gallery/hair-repair.jpg' },
+    { id: 41, category: 'treatments', title: 'Glossing Service', image: '/public/images/gallery/glossing.jpg' },
+    { id: 42, category: 'treatments', title: 'Protein Treatment', image: '/public/images/gallery/protein-treatment.jpg' },
+    { id: 43, category: 'treatments', title: 'Olaplex Treatment', image: '/public/images/gallery/olaplex.jpg' },
+    { id: 44, category: 'treatments', title: 'Brazilian Blowout', image: '/public/images/gallery/brazilian-blowout.jpg' },
     
-    // Men's Services
-    { id: 31, category: 'mens', title: 'Classic Fade', image: '[Image: Men\'s fade haircut]' },
-    { id: 32, category: 'mens', title: 'Beard Trim', image: '[Image: Professional beard styling]' },
-    { id: 33, category: 'mens', title: 'Modern Pompadour', image: '[Image: Styled pompadour]' },
-    { id: 34, category: 'mens', title: 'Textured Crop', image: '[Image: Textured men\'s cut]' },
-    { id: 35, category: 'mens', title: 'Undercut Style', image: '[Image: Modern undercut]' },
-    { id: 36, category: 'mens', title: 'Business Cut', image: '[Image: Professional men\'s cut]' }
+    // Men's Services (expanded)
+    { id: 45, category: 'mens', title: 'Classic Fade', image: '/public/images/gallery/classic-fade.jpg' },
+    { id: 46, category: 'mens', title: 'Beard Trim', image: '/public/images/gallery/beard-trim.jpg' },
+    { id: 47, category: 'mens', title: 'Modern Pompadour', image: '/public/images/gallery/pompadour.jpg' },
+    { id: 48, category: 'mens', title: 'Textured Crop', image: '/public/images/gallery/textured-crop.jpg' },
+    { id: 49, category: 'mens', title: 'Undercut Style', image: '/public/images/gallery/undercut.jpg' },
+    { id: 50, category: 'mens', title: 'Business Cut', image: '/public/images/gallery/business-cut.jpg' },
+    { id: 51, category: 'mens', title: 'Buzz Cut', image: '/public/images/gallery/buzz-cut.jpg' },
+    { id: 52, category: 'mens', title: 'Crew Cut', image: '/public/images/gallery/crew-cut.jpg' },
+    
+    // Bridal (new category)
+    { id: 53, category: 'bridal', title: 'Bridal Updo Classic', image: '/public/images/gallery/bridal-updo-1.jpg' },
+    { id: 54, category: 'bridal', title: 'Bridal Half-Up', image: '/public/images/gallery/bridal-half-up.jpg' },
+    { id: 55, category: 'bridal', title: 'Bridal Braided', image: '/public/images/gallery/bridal-braided.jpg' },
+    { id: 56, category: 'bridal', title: 'Bridal Vintage', image: '/public/images/gallery/bridal-vintage.jpg' },
+    { id: 57, category: 'bridal', title: 'Bridal Romantic', image: '/public/images/gallery/bridal-romantic.jpg' },
+    { id: 58, category: 'bridal', title: 'Bridal Modern', image: '/public/images/gallery/bridal-modern.jpg' },
+    
+    // Extensions (new category)
+    { id: 59, category: 'extensions', title: 'Tape-In Extensions', image: '/public/images/gallery/tape-extensions.jpg' },
+    { id: 60, category: 'extensions', title: 'Clip-In Extensions', image: '/public/images/gallery/clip-extensions.jpg' },
+    { id: 61, category: 'extensions', title: 'Sew-In Extensions', image: '/public/images/gallery/sew-extensions.jpg' },
+    { id: 62, category: 'extensions', title: 'Fusion Extensions', image: '/public/images/gallery/fusion-extensions.jpg' }
   ];
 
   const filters = [
@@ -58,7 +88,9 @@ const Gallery = () => {
     { key: 'color', label: 'Hair Color' },
     { key: 'styling', label: 'Styling' },
     { key: 'treatments', label: 'Treatments' },
-    { key: 'mens', label: 'Men\'s Services' }
+    { key: 'mens', label: 'Men\'s Services' },
+    { key: 'bridal', label: 'Bridal' },
+    { key: 'extensions', label: 'Extensions' }
   ];
 
   const filteredItems = activeFilter === 'all' 
@@ -94,8 +126,8 @@ const Gallery = () => {
           ))}
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 md:gap-6">
+        {/* Gallery Grid - 4 columns */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
           {filteredItems.map((item) => (
             <div
               key={item.id}
@@ -103,7 +135,7 @@ const Gallery = () => {
             >
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs md:text-sm text-center p-2 md:p-4">
-                {item.image}
+                [Image: {item.title}]
               </div>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-2 md:p-4">
                 <h3 className="text-white font-semibold text-xs md:text-sm">{item.title}</h3>

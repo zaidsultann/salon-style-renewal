@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import LocationSelector from '../components/LocationSelector';
 
 const Services = () => {
   const [openSections, setOpenSections] = useState<string[]>(['cuts']);
+  const [isLocationSelectorOpen, setIsLocationSelectorOpen] = useState(false);
 
   const toggleSection = (section: string) => {
     setOpenSections(prev => 
@@ -285,29 +287,34 @@ const Services = () => {
             </div>
             <div>
               <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
-                Book Your Service
+                Ready to Book Your Service?
               </h3>
               <p className="text-gray-600 mb-6">
-                Ready to schedule your appointment? Contact us for a consultation or book online.
+                Contact us for a consultation or call us directly at one of our locations.
               </p>
               <div className="space-y-3">
-                <a
-                  href="/booking"
+                <button
+                  onClick={() => setIsLocationSelectorOpen(true)}
                   className="inline-block w-full md:w-auto bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full text-center transition-colors duration-300"
                 >
-                  Book Online
-                </a>
+                  Call Us
+                </button>
                 <a
-                  href="tel:905-555-4567"
+                  href="/contact"
                   className="inline-block w-full md:w-auto ml-0 md:ml-4 border-2 border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white font-semibold px-8 py-3 rounded-full text-center transition-all duration-300"
                 >
-                  Call (905) 555-4567
+                  Contact Form
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <LocationSelector 
+        isOpen={isLocationSelectorOpen}
+        onClose={() => setIsLocationSelectorOpen(false)}
+      />
     </div>
   );
 };
