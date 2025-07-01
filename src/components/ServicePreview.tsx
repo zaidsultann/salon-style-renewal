@@ -7,26 +7,22 @@ const ServicePreview = () => {
     {
       title: 'Hair Cuts',
       description: 'Expert cuts tailored to your face shape and lifestyle',
-      image: '[Image: Professional hair cutting session]',
-      price: 'From $45'
+      image: '[Image: Professional hair cutting session]'
     },
     {
       title: 'Hair Coloring',
       description: 'Stunning color transformations and highlights',
-      image: '[Image: Beautiful hair coloring results]',
-      price: 'From $85'
+      image: '[Image: Beautiful hair coloring results]'
     },
     {
       title: 'Styling',
       description: 'Special occasion styling and everyday looks',
-      image: '[Image: Elegant hair styling]',
-      price: 'From $35'
+      image: '[Image: Elegant hair styling]'
     },
     {
       title: 'Treatments',
       description: 'Nourishing treatments for healthy, beautiful hair',
-      image: '[Image: Hair treatment process]',
-      price: 'From $60'
+      image: '[Image: Hair treatment process]'
     }
   ];
 
@@ -49,9 +45,6 @@ const ServicePreview = () => {
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300"></div>
                 <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-sm text-center p-4">
                   {service.image}
-                </div>
-                <div className="absolute bottom-4 right-4 bg-white/90 px-3 py-1 rounded-full text-rose-600 font-semibold text-sm">
-                  {service.price}
                 </div>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>

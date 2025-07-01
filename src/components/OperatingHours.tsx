@@ -13,30 +13,30 @@ const OperatingHours = () => {
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 md:mb-20">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
             Our Timing
           </h2>
         </div>
 
-        <div className="max-w-md mx-auto">
-          <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-            <div className="p-4 md:p-6">
-              <div className="space-y-2 md:space-y-3">
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+            <div className="p-6 md:p-10">
+              <div className="space-y-3 md:space-y-4">
                 {hours.map((schedule, index) => (
                   <div 
                     key={index} 
-                    className="flex items-center justify-between py-2 md:py-3 px-3 md:px-4 bg-gradient-to-r from-rose-50 to-amber-50 rounded-lg"
+                    className="flex items-center justify-between py-4 md:py-6 px-4 md:px-8 bg-gradient-to-r from-rose-50 to-amber-50 rounded-xl hover:from-rose-100 hover:to-amber-100 transition-all duration-300"
                   >
-                    <span className="font-medium text-gray-900 text-sm md:text-base">
+                    <span className="font-bold text-gray-900 text-lg md:text-xl tracking-wide">
                       {schedule.day}
                     </span>
-                    <div className="flex items-center space-x-1 md:space-x-2 text-sm md:text-base">
-                      <span className="text-gray-700">{schedule.open}</span>
-                      <span className="text-gray-400">-</span>
-                      <span className="text-gray-700">{schedule.close}</span>
+                    <div className="flex items-center space-x-2 md:space-x-3 text-lg md:text-xl">
+                      <span className="text-gray-800 font-semibold">{schedule.open}</span>
+                      <span className="text-gray-400 font-bold">-</span>
+                      <span className="text-gray-800 font-semibold">{schedule.close}</span>
                     </div>
                   </div>
                 ))}

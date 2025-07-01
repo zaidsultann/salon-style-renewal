@@ -14,10 +14,13 @@ const BusinessInfo = () => {
               <div className="flex justify-center mb-6">
                 <div className="w-16 h-0.5 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full"></div>
               </div>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 leading-relaxed mb-4">
                 Velvet Salon has been in the business for over 20 years. 
                 With our team of skilled professionals we offer great 
                 services and pricing for both men and women.
+              </p>
+              <p className="text-lg text-rose-600 font-semibold">
+                Walk-ins are welcome!
               </p>
             </div>
           </div>
