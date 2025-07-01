@@ -238,12 +238,12 @@ const ServiceSelectionDialog = ({ selectedServices, onServicesChange, children }
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[80vh] flex flex-col">
-        <DialogHeader>
+      <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
+        <DialogHeader className="flex-shrink-0">
           <DialogTitle>Select Services</DialogTitle>
         </DialogHeader>
         
-        <div className="flex-1 overflow-y-auto space-y-6 pr-2">
+        <div className="flex-1 overflow-y-auto space-y-6 pr-2 pb-4">
           {/* Selected Services */}
           {selectedServices.length > 0 && (
             <div className="bg-rose-50 p-4 rounded-lg">
@@ -319,14 +319,16 @@ const ServiceSelectionDialog = ({ selectedServices, onServicesChange, children }
           ))}
         </div>
 
-        {/* Sticky Footer */}
-        <div className="flex justify-end gap-3 pt-4 border-t bg-white sticky bottom-0">
-          <Button variant="outline" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button onClick={() => setOpen(false)} className="bg-rose-600 hover:bg-rose-700">
-            Done ({selectedServices.length} selected)
-          </Button>
+        {/* Fixed Sticky Footer */}
+        <div className="flex-shrink-0 border-t bg-white p-4">
+          <div className="flex justify-end gap-3">
+            <Button variant="outline" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+            <Button onClick={() => setOpen(false)} className="bg-rose-600 hover:bg-rose-700">
+              Done ({selectedServices.length} selected)
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

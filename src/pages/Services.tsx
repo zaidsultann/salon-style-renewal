@@ -1,11 +1,8 @@
-
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Calendar } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const Services = () => {
   const [openSections, setOpenSections] = useState<string[]>(['cuts']);
-  const navigate = useNavigate();
 
   const toggleSection = (section: string) => {
     setOpenSections(prev => 
@@ -13,18 +10,6 @@ const Services = () => {
         ? prev.filter(s => s !== section)
         : [...prev, section]
     );
-  };
-
-  const handleBookService = (serviceName: string, servicePrice: string) => {
-    navigate('/booking', { 
-      state: { 
-        preselectedService: { 
-          name: serviceName, 
-          price: servicePrice,
-          category: 'Pre-selected'
-        } 
-      } 
-    });
   };
 
   // Define popular services for highlighting
@@ -260,26 +245,17 @@ const Services = () => {
                           return (
                             <div 
                               key={serviceIndex} 
-                              className={`flex justify-between items-center p-3 rounded-lg transition-colors duration-200 group ${
+                              className={`flex justify-between items-center p-3 rounded-lg transition-colors duration-200 ${
                                 isPopular 
                                   ? 'bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-200' 
                                   : 'hover:bg-gray-50'
                               }`}
                             >
-                              <div className="flex-1">
-                                <span className={`${isPopular ? 'font-semibold text-gray-900' : 'text-gray-700'}`}>
-                                  {service.name}
-                                  {isPopular && <span className="ml-2 text-xs bg-rose-600 text-white px-2 py-1 rounded-full">Popular</span>}
-                                </span>
-                                <span className="text-rose-600 font-semibold ml-4">{service.price}</span>
-                              </div>
-                              <button
-                                onClick={() => handleBookService(service.name, service.price)}
-                                className="ml-4 bg-rose-600 hover:bg-rose-700 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1 transition-all duration-200"
-                              >
-                                <Calendar className="w-3 h-3" />
-                                Book
-                              </button>
+                              <span className={`${isPopular ? 'font-semibold text-gray-900' : 'text-gray-700'}`}>
+                                {service.name}
+                                {isPopular && <span className="ml-2 text-xs bg-rose-600 text-white px-2 py-1 rounded-full">Popular</span>}
+                              </span>
+                              <span className="text-rose-600 font-semibold">{service.price}</span>
                             </div>
                           );
                         })}

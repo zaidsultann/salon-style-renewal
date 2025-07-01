@@ -6,25 +6,14 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 md:col-span-1">
             <h3 className="text-2xl font-serif font-bold mb-4">Velvet Salon</h3>
             <p className="text-gray-300 mb-4 max-w-md">
               Where beauty meets artistry. Experience luxury hair styling with our expert team 
               of professional stylists dedicated to bringing out your natural beauty.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                Twitter
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -73,29 +62,20 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Newsletter Signup */}
-        <div className="mt-8 pt-8 border-t border-gray-700">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <h4 className="text-lg font-semibold mb-2">Stay Updated</h4>
-              <p className="text-gray-300">Subscribe to get the latest news and special offers</p>
-            </div>
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 rounded-l-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-rose-500"
-              />
-              <button className="bg-rose-600 hover:bg-rose-700 px-6 py-2 rounded-r-full transition-colors duration-300">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300">
-          <p>&copy; 2024 Velvet Salon. All rights reserved.</p>
+        {/* Copyright and Attribution */}
+        <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300 space-y-2">
+          <p>Copyright © 2025 Velvet Salon</p>
+          <p>
+            Powered by{' '}
+            <a 
+              href="https://digitalizers.ca" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-rose-400 hover:text-rose-300 transition-colors font-medium"
+            >
+              Digitalizers Inc.
+            </a>
+          </p>
         </div>
       </div>
     </footer>
