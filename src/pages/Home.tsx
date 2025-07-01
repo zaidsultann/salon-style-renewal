@@ -5,7 +5,6 @@ import ServicePreview from '../components/ServicePreview';
 import BusinessInfo from '../components/BusinessInfo';
 import OperatingHours from '../components/OperatingHours';
 import TestimonialSection from '../components/TestimonialSection';
-import CallToAction from '../components/CallToAction';
 
 const Home = () => {
   return (
@@ -15,7 +14,6 @@ const Home = () => {
       <BusinessInfo />
       <OperatingHours />
       <TestimonialSection />
-      <CallToAction />
     </div>
   );
 };

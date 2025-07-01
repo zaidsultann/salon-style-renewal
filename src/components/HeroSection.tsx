@@ -23,14 +23,8 @@ const HeroSection = () => {
         </p>
         <div className="space-x-4">
           <Link
-            to="/booking"
-            className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300"
-          >
-            Book Appointment
-          </Link>
-          <Link
             to="/gallery"
-            className="inline-block border-2 border-white text-white hover:bg-white hover:text-rose-600 font-semibold px-8 py-3 rounded-full transition-all duration-300"
+            className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300"
           >
             View Gallery
           </Link>
