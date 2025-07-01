@@ -36,11 +36,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/booking" className="text-gray-300 hover:text-white transition-colors">
-                  Booking
-                </Link>
-              </li>
-              <li>
                 <Link to="/contact" className="text-gray-300 hover:text-white transition-colors">
                   Contact
                 </Link>
@@ -63,8 +58,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright and Attribution */}
-        <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300 space-y-2">
-          <p>Copyright © 2025 Velvet Salon</p>
+        <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300">
+          <p className="mb-1">Copyright © 2025 Velvet Salon</p>
           <p>
             Powered by{' '}
             <a 
