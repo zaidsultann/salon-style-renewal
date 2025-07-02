@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Separator } from '@/components/ui/separator';
 
 const Footer = () => {
   return (
@@ -46,13 +47,22 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
-            <div className="space-y-2 text-gray-300">
-              <p>1075 Ceremonial Dr, Unit 6</p>
-              <p>Mississauga, ON L5R 2Z4</p>
-              <p>(905) 507-4965</p>
-              <p>3050 Artesian Dr, Unit 7</p>
-              <p>Mississauga, ON L5M 7P5</p>
-              <p>(905) 828-4347</p>
+            <div className="space-y-4 text-gray-300">
+              <div>
+                <p>1075 Ceremonial Dr, Unit 6</p>
+                <p>Mississauga, ON L5R 2Z4</p>
+                <p>(905) 507-4965</p>
+              </div>
+              
+              <div className="flex justify-center">
+                <Separator className="w-16 h-px bg-gray-600" />
+              </div>
+              
+              <div>
+                <p>3050 Artesian Dr, Unit 7</p>
+                <p>Mississauga, ON L5M 7P5</p>
+                <p>(905) 828-4347</p>
+              </div>
             </div>
           </div>
         </div>
