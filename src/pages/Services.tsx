@@ -272,7 +272,6 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Service Categories */}
         <div className="max-w-5xl mx-auto space-y-4">
           {Object.entries(serviceCategories).map(([key, category]) => (
             <div key={key} className="border border-gray-200 rounded-lg overflow-hidden">
