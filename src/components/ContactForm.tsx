@@ -1,13 +1,8 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
-
-// Update this email to where submissions should be sent
-const EMAIL_TO = "salon@example.com";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +13,7 @@ const ContactForm = () => {
     message: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const [message, setMessage] = useState({ text: '', type: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -29,51 +24,27 @@ const ContactForm = () => {
 
   const validateForm = () => {
     if (!formData.firstName.trim()) {
-      toast({
-        title: "Error",
-        description: "First name is required",
-        variant: "destructive"
-      });
+      setMessage({ text: 'First name is required', type: 'error' });
       return false;
     }
     if (!formData.lastName.trim()) {
-      toast({
-        title: "Error",
-        description: "Last name is required",
-        variant: "destructive"
-      });
+      setMessage({ text: 'Last name is required', type: 'error' });
       return false;
     }
     if (!formData.email.trim()) {
-      toast({
-        title: "Error",
-        description: "Email is required",
-        variant: "destructive"
-      });
+      setMessage({ text: 'Email is required', type: 'error' });
       return false;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      toast({
-        title: "Error",
-        description: "Please enter a valid email address",
-        variant: "destructive"
-      });
+      setMessage({ text: 'Please enter a valid email address', type: 'error' });
       return false;
     }
     if (!formData.phone.trim()) {
-      toast({
-        title: "Error",
-        description: "Phone number is required",
-        variant: "destructive"
-      });
+      setMessage({ text: 'Phone number is required', type: 'error' });
       return false;
     }
     if (!formData.message.trim()) {
-      toast({
-        title: "Error",
-        description: "Message is required",
-        variant: "destructive"
-      });
+      setMessage({ text: 'Message is required', type: 'error' });
       return false;
     }
     return true;
@@ -87,24 +58,23 @@ const ContactForm = () => {
     setIsLoading(true);
 
     try {
-      // Using Formspree for easy form handling
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      // Create FormData object for Netlify Forms
+      const formDataToSend = new FormData();
+      formDataToSend.append('form-name', 'contact');
+      formDataToSend.append('firstName', formData.firstName);
+      formDataToSend.append('lastName', formData.lastName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('message', formData.message);
+
+      const response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          _replyto: formData.email,
-          _subject: `New contact form submission from ${formData.firstName} ${formData.lastName}`,
-        }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formDataToSend as any).toString()
       });
 
       if (response.ok) {
-        toast({
-          title: "Success!",
-          description: "Your message has been sent successfully. We'll get back to you soon!",
-        });
+        setMessage({ text: "Your message has been sent successfully. We'll get back to you soon!", type: 'success' });
         setFormData({
           firstName: '',
           lastName: '',
@@ -117,11 +87,7 @@ const ContactForm = () => {
       }
     } catch (error) {
       console.error('Error sending form:', error);
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or call us directly.",
-        variant: "destructive"
-      });
+      setMessage({ text: 'Failed to send message. Please try again or call us directly.', type: 'error' });
     } finally {
       setIsLoading(false);
     }
@@ -133,6 +99,31 @@ const ContactForm = () => {
         <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6 text-center">
           Send Us a Message
         </h2>
+        
+        {/* Message display */}
+        {message.text && (
+          <div className={`mb-4 p-4 rounded-lg ${
+            message.type === 'error' 
+              ? 'bg-red-50 border border-red-200 text-red-700' 
+              : 'bg-green-50 border border-green-200 text-green-700'
+          }`}>
+            {message.text}
+          </div>
+        )}
+        
+        {/* Hidden form for Netlify Forms detection */}
+        <form 
+          name="contact" 
+          netlify="true" 
+          hidden
+        >
+          <input type="text" name="firstName" />
+          <input type="text" name="lastName" />
+          <input type="email" name="email" />
+          <input type="tel" name="phone" />
+          <textarea name="message"></textarea>
+        </form>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
