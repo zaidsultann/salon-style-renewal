@@ -13,9 +13,20 @@ const ContactForm = () => {
     message: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState({ text: '', type: '' });
+  const [toasts, setToasts] = useState([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const showToast = (title, description, variant = 'default') => {
+    const id = Date.now();
+    const newToast = { id, title, description, variant };
+    setToasts(prev => [...prev, newToast]);
+    
+    // Auto remove toast after 5 seconds
+    setTimeout(() => {
+      setToasts(prev => prev.filter(toast => toast.id !== id));
+    }, 5000);
+  };
+
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -24,60 +35,55 @@ const ContactForm = () => {
 
   const validateForm = () => {
     if (!formData.firstName.trim()) {
-      setMessage({ text: 'First name is required', type: 'error' });
+      showToast("Error", "First name is required", "destructive");
       return false;
     }
     if (!formData.lastName.trim()) {
-      setMessage({ text: 'Last name is required', type: 'error' });
+      showToast("Error", "Last name is required", "destructive");
       return false;
     }
     if (!formData.email.trim()) {
-      setMessage({ text: 'Email is required', type: 'error' });
+      showToast("Error", "Email is required", "destructive");
       return false;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setMessage({ text: 'Please enter a valid email address', type: 'error' });
+      showToast("Error", "Please enter a valid email address", "destructive");
       return false;
     }
     if (!formData.phone.trim()) {
-      setMessage({ text: 'Phone number is required', type: 'error' });
+      showToast("Error", "Phone number is required", "destructive");
       return false;
     }
     if (!formData.message.trim()) {
-      setMessage({ text: 'Message is required', type: 'error' });
+      showToast("Error", "Message is required", "destructive");
       return false;
     }
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Clear any previous messages
-    setMessage({ text: '', type: '' });
     
     if (!validateForm()) return;
 
     setIsLoading(true);
 
     try {
-      // Create FormData object for Netlify Forms
-      const formDataToSend = new FormData();
-      formDataToSend.append('form-name', 'contact');
-      formDataToSend.append('firstName', formData.firstName);
-      formDataToSend.append('lastName', formData.lastName);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('message', formData.message);
-
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formDataToSend as any).toString()
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          'firstName': formData.firstName,
+          'lastName': formData.lastName,
+          'email': formData.email,
+          'phone': formData.phone,
+          'message': formData.message
+        }).toString()
       });
 
       if (response.ok) {
-        setMessage({ text: "Your message has been sent successfully. We'll get back to you soon!", type: 'success' });
+        showToast("Success!", "Your message has been sent successfully. We'll get back to you soon!");
         setFormData({
           firstName: '',
           lastName: '',
@@ -85,14 +91,12 @@ const ContactForm = () => {
           phone: '',
           message: ''
         });
-        // Clear success message after 5 seconds
-        setTimeout(() => setMessage({ text: '', type: '' }), 5000);
       } else {
         throw new Error('Failed to send message');
       }
     } catch (error) {
       console.error('Error sending form:', error);
-      setMessage({ text: 'Failed to send message. Please try again or call us directly.', type: 'error' });
+      showToast("Error", "Failed to send message. Please try again or call us directly.", "destructive");
     } finally {
       setIsLoading(false);
     }
@@ -100,28 +104,30 @@ const ContactForm = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* Toast notifications */}
+      <div className="fixed top-4 right-4 z-50 space-y-2">
+        {toasts.map(toast => (
+          <div
+            key={toast.id}
+            className={`p-4 rounded-lg shadow-lg max-w-sm transform transition-all duration-300 ${
+              toast.variant === 'destructive' 
+                ? 'bg-red-500 text-white' 
+                : 'bg-green-500 text-white'
+            }`}
+          >
+            <div className="font-semibold">{toast.title}</div>
+            <div className="text-sm opacity-90">{toast.description}</div>
+          </div>
+        ))}
+      </div>
+
       <div className="bg-gray-50 rounded-2xl p-6 md:p-8">
         <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6 text-center">
           Send Us a Message
         </h2>
         
-        {/* Message display */}
-        {message.text && (
-          <div className={`mb-4 p-4 rounded-lg ${
-            message.type === 'error' 
-              ? 'bg-red-50 border border-red-200 text-red-700' 
-              : 'bg-green-50 border border-green-200 text-green-700'
-          }`}>
-            {message.text}
-          </div>
-        )}
-        
-        {/* Hidden form for Netlify Forms detection */}
-        <form 
-          name="contact" 
-          data-netlify="true" 
-          hidden
-        >
+        {/* Hidden form for Netlify detection */}
+        <form name="contact" data-netlify="true" hidden>
           <input type="text" name="firstName" />
           <input type="text" name="lastName" />
           <input type="email" name="email" />
@@ -129,8 +135,7 @@ const ContactForm = () => {
           <textarea name="message"></textarea>
         </form>
 
-        <form onSubmit={handleSubmit} name="contact" data-netlify="true" className="space-y-6">
-          <input type="hidden" name="form-name" value="contact" />
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
