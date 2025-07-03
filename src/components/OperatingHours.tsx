@@ -2,13 +2,13 @@ import React from 'react';
 
 const OperatingHours = () => {
   const hours = [
-    { day: 'MONDAY', open: '10:00AM', close: '7:00PM' },
-    { day: 'TUESDAY', open: '10:00AM', close: '7:00PM' },
-    { day: 'WEDNESDAY', open: '10:00AM', close: '7:00PM' },
-    { day: 'THURSDAY', open: '10:00AM', close: '7:00PM' },
-    { day: 'FRIDAY', open: '10:00AM', close: '7:00PM' },
-    { day: 'SATURDAY', open: '10:00AM', close: '6:00PM' },
-    { day: 'SUNDAY', open: '10:00AM', close: '5:00PM' }
+    { day: 'MONDAY', open: '10:00AM', close: '8:00PM' },
+    { day: 'TUESDAY', open: '10:00AM', close: '8:00PM' },
+    { day: 'WEDNESDAY', open: '10:00AM', close: '8:00PM' },
+    { day: 'THURSDAY', open: '10:00AM', close: '8:00PM' },
+    { day: 'FRIDAY', open: '10:00AM', close: '8:00PM' },
+    { day: 'SATURDAY', open: '10:00AM', close: '7:00PM' },
+    { day: 'SUNDAY', open: '10:00AM', close: '6:00PM' }
   ];
 
   return (
@@ -16,7 +16,7 @@ const OperatingHours = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6">
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
-            Our Timing
+            Our Timings
           </h2>
         </div>
 

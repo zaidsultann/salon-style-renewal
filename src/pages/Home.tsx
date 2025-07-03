@@ -4,6 +4,7 @@ import HeroSection from '../components/HeroSection';
 import BusinessInfo from '../components/BusinessInfo';
 import ServicePreview from '../components/ServicePreview';
 import OperatingHours from '../components/OperatingHours';
+import DesignContainer from '../components/DesignContainer';
 import TestimonialSection from '../components/TestimonialSection';
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       <BusinessInfo />
       <ServicePreview />
       <OperatingHours />
+      <DesignContainer/>
       <TestimonialSection />
     </div>
   );

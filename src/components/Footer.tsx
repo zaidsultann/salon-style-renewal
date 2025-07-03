@@ -51,7 +51,7 @@ const Footer = () => {
               <div>
                 <p>1075 Ceremonial Dr, Unit 6</p>
                 <p>Mississauga, ON L5R 2Z4</p>
-                <p>(905) 507-4965</p>
+                <p>(905) 507-4005</p>
               </div>
               
               <div className="flex justify-center">
@@ -61,14 +61,14 @@ const Footer = () => {
               <div>
                 <p>3050 Artesian Dr, Unit 7</p>
                 <p>Mississauga, ON L5M 7P5</p>
-                <p>(905) 828-4347</p>
+                <p>(905) 828-4247</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Copyright and Attribution */}
-        <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300">
+        <div className="mt-8 pt-8 border-t border-gray-700 text-left text-gray-300">
           <p className="mb-1">Copyright © 2025 Velvet Salon</p>
           <p>
             Powered by{' '}

@@ -9,32 +9,32 @@ const Contact = () => {
       name: 'Main Location',
       address: '1075 Ceremonial Dr, Unit 6',
       city: 'Mississauga, ON L5R 2Z4',
-      phone: '(905) 507-4965',
+      phone: '(905) 507-4005',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110736.88201476583!2d-79.79706201185714!3d43.545467060106176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b40eb84679e53%3A0xd2b28b4a26cb2605!2sVelvet%20Salon!5e1!3m2!1sen!2sca!4v1751491114081!5m2!1sen!2sca',
       hours: {
-        'Monday': '10:00am - 7:00pm',
-        'Tuesday': '10:00am - 7:00pm', 
-        'Wednesday': '10:00am - 7:00pm',
-        'Thursday': '10:00am - 7:00pm',
-        'Friday': '10:00am - 7:00pm',
-        'Saturday': '10:00am - 6:00pm',
-        'Sunday': '10:00am - 5:00pm'
+        'Monday': '10:00am - 8:00pm',
+        'Tuesday': '10:00am - 8:00pm', 
+        'Wednesday': '10:00am - 8:00pm',
+        'Thursday': '10:00am - 8:00pm',
+        'Friday': '10:00am - 8:00pm',
+        'Saturday': '10:00am - 7:00pm',
+        'Sunday': '10:00am - 6:00pm'
       }
     },
     {
       name: 'Second Location',
       address: '3050 Artesian Dr, Unit 7',
       city: 'Mississauga, ON L5M 7P5',
-      phone: '(905) 828-4347',
+      phone: '(905) 828-4247',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3460.533229002781!2d-79.7172366234496!3d43.545368359397735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b41a29756403b%3A0xf7afe3fc31af46c!2sVelvet%20Salon!5e1!3m2!1sen!2sca!4v1751491002955!5m2!1sen!2sca',
       hours: {
-        'Monday': '10:00am - 7:00pm',
-        'Tuesday': '10:00am - 7:00pm',
-        'Wednesday': '10:00am - 7:00pm', 
-        'Thursday': '10:00am - 7:00pm',
-        'Friday': '10:00am - 7:00pm',
-        'Saturday': '10:00am - 6:00pm',
-        'Sunday': '10:00am - 5:00pm'
+        'Monday': '10:00am - 8:00pm',
+        'Tuesday': '10:00am - 8:00pm',
+        'Wednesday': '10:00am - 8:00pm', 
+        'Thursday': '10:00am - 8:00pm',
+        'Friday': '10:00am - 8:00pm',
+        'Saturday': '10:00am - 7:00pm',
+        'Sunday': '10:00am - 6:00pm'
       }
     }
   ];
@@ -133,7 +133,7 @@ const Contact = () => {
                 {/* Add separator line between locations except for the last one */}
                 {index < locations.length - 1 && (
                   <div className="flex justify-center my-8">
-                    <Separator className="w-24 h-px bg-gray-300" />
+                    <Separator className="w-24 h-px bg-white-300" />
                   </div>
                 )}
               </div>
