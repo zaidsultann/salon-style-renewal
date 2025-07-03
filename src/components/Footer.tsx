@@ -11,6 +11,13 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-2xl font-serif font-bold mb-4">Velvet Salon</h3>
+            <div className="flex justify-center md:justify-start mb-4">
+              <img 
+                src="/lovable-uploads/9aa49b50-05a6-43bc-a291-06a2a44341c1.png" 
+                alt="Decorative divider" 
+                className="w-16 h-auto opacity-70"
+              />
+            </div>
             <p className="text-gray-300 mb-4 max-w-md">
               Where beauty meets artistry. Experience luxury hair styling with our expert team 
               of professional stylists dedicated to bringing out your natural beauty.

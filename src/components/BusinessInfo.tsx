@@ -11,7 +11,11 @@ const BusinessInfo = () => {
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
               <div className="flex justify-center mb-4">
-                <div className="w-16 h-0.5 bg-gradient-to-r from-rose-400 to-amber-400 rounded-full"></div>
+                <img 
+                  src="/lovable-uploads/9aa49b50-05a6-43bc-a291-06a2a44341c1.png" 
+                  alt="Decorative divider" 
+                  className="w-20 h-auto opacity-80"
+                />
               </div>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
                 Velvet Salon has been in the business for over 20 years. 
