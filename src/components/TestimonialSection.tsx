@@ -65,13 +65,6 @@ const TestimonialSection = () => {
           <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
             What Our Clients Say
           </h2>
-          <div className="flex justify-center mb-8">
-            <img 
-              src="/lovable-uploads/9aa49b50-05a6-43bc-a291-06a2a44341c1.png" 
-              alt="Decorative divider" 
-              className="w-20 h-auto opacity-80"
-            />
-          </div>
         </div>
 
         {/* Carousel for testimonials */}
@@ -108,13 +101,6 @@ const TestimonialSection = () => {
           <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
             Share Your Experience
           </h3>
-          <div className="flex justify-center mb-4">
-            <img 
-              src="/lovable-uploads/9aa49b50-05a6-43bc-a291-06a2a44341c1.png" 
-              alt="Decorative divider" 
-              className="w-16 h-auto opacity-70"
-            />
-          </div>
           <p className="text-gray-600 mb-6 text-base">
             Had a great experience? We'd love to hear from you!
           </p>

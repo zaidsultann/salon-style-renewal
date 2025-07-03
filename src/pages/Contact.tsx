@@ -46,13 +46,6 @@ const Contact = () => {
           <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
             Contact Us
           </h1>
-          <div className="flex justify-center mb-4">
-            <img 
-              src="/lovable-uploads/9aa49b50-05a6-43bc-a291-06a2a44341c1.png" 
-              alt="Decorative divider" 
-              className="w-20 h-auto opacity-80"
-            />
-          </div>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             Get in touch with us or visit us at either of our convenient locations
           </p>

@@ -267,13 +267,6 @@ const Services = () => {
           <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">
             Our Services & Pricing
           </h1>
-          <div className="flex justify-center mb-4">
-            <img 
-              src="/lovable-uploads/9aa49b50-05a6-43bc-a291-06a2a44341c1.png" 
-              alt="Decorative divider" 
-              className="w-20 h-auto opacity-80"
-            />
-          </div>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Professional hair services with transparent pricing. All services include consultation.
           </p>

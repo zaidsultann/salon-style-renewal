@@ -27,11 +27,6 @@ const HeroSection = () => {
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">
           Velvet Salon
         </h1>
-        <img 
-          src="/lovable-uploads/9aa49b50-05a6-43bc-a291-06a2a44341c1.png" 
-          alt="Decorative divider" 
-          className="mx-auto mb-6 w-24 h-auto opacity-90"
-        />
         <p className="text-xl md:text-2xl mb-8 font-light">
           Where beauty meets artistry. Experience luxury hair styling in the heart of the city.
         </p>
