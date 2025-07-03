@@ -8,45 +8,41 @@ const TestimonialSection = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
-      text: 'Absolutely love my new look! The stylists here are true artists.',
+      name: 'Vibhav Jaswal',
+      text: 'This has been my go to salon for a year and a half now. Clean and professional services. Shout out to Honey, has always received excellent service and great advice from him.',
       rating: 5
     },
     {
-      name: 'Maria Garcia', 
-      text: 'Best hair salon experience I\'ve ever had. Highly recommend!',
+      name: 'Khadijah Khan', 
+      text: 'Love this place for all my essential services and Amna is the absolute best! Been getting my eyebrows, waxing and hair styled from her since I can remember!',
       rating: 5
     },
     {
-      name: 'Emily Chen',
-      text: 'Professional, friendly staff and amazing results every time.',
+      name: 'Ricardo Teixeira',
+      text: 'Arshdeep does a great job on my hair, beard & eyebrows. Takes pride in his work, which has had me coming back for 2 years now.',
       rating: 5
     },
     {
-      name: 'Jessica Thompson',
-      text: 'Amazing color work and the staff is so welcoming!',
+      name: 'Ayaan Mahmood',
+      text: 'Have been going here for all my services for a long time now, and Amina has been the absolute best! Threading, hair colour, hair cuts, more than satisfied every time!',
       rating: 5
     },
     {
-      name: 'Amanda Rodriguez',
-      text: 'Love coming here for my monthly touch-ups. Always perfect!',
+      name: 'Michelle Arthur',
+      text: 'I have been going to this place for 2 years now. It is well organized and clean. The workers are all friendly and professional. They do a good job.',
       rating: 5
     },
     {
-      name: 'Lisa Williams',
-      text: 'The best balayage I\'ve ever gotten. Will definitely be back!',
+      name: 'Mehak A',
+      text: 'Been coming here for almost 8 years now as it’s my local waxing place and never once had any issues. They are really good. Today Amna was very helpful and did a great job. Definitely recommend.',
       rating: 5
     },
     {
-      name: 'Michelle Davis',
-      text: 'Exceptional service and stunning results. Worth every penny!',
+      name: 'Sneh Patel',
+      text: 'Got a haircut from Honey at Velvet Salon and I’m really happy with the results! He was super professional, listened to exactly what I wanted, and gave great suggestions too.',
       rating: 5
     },
-    {
-      name: 'Jennifer Brown',
-      text: 'They transformed my hair beyond my expectations. Love it!',
-      rating: 5
-    }
+
   ];
 
   const locations = [

@@ -1,35 +1,33 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const ServicePreview = () => {
   const services = [
     {
       title: 'Hair Cuts',
       description: 'Expert cuts tailored to your face shape and lifestyle',
-      image: '[Image: Professional hair cutting session]'
+      image: '/images/gallery/hair-cuts.jpg'
     },
     {
       title: 'Hair Coloring',
       description: 'Stunning color transformations and highlights',
-      image: '[Image: Beautiful hair coloring results]'
+      image: '/images/gallery/hair-coloring.png'
     },
     {
       title: 'Styling',
       description: 'Special occasion styling and everyday looks',
-      image: '[Image: Elegant hair styling]'
+      image: '/images/gallery/styling.jpg'
     },
     {
       title: 'Treatments',
       description: 'Nourishing treatments for healthy, beautiful hair',
-      image: '[Image: Hair treatment process]'
+      image: '/images/gallery/treatments.png'
     }
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-8 md:py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-6">
           <h2 className="text-4xl font-serif font-bold text-gray-900 mb-4">
             Our Services
           </h2>
@@ -43,9 +41,12 @@ const ServicePreview = () => {
             <div key={index} className="group cursor-pointer">
               <div className="relative overflow-hidden rounded-lg mb-4 h-64 bg-gradient-to-br from-rose-100 to-amber-100">
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300"></div>
-                <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-sm text-center p-4">
-                  {service.image}
-                </div>
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300"></div>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.title}</h3>
               <p className="text-gray-600">{service.description}</p>
@@ -53,13 +54,13 @@ const ServicePreview = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Link
-            to="/services"
+        <div className="text-center mt-6">
+          <a
+            href="/services"
             className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300"
           >
             View All Services
-          </Link>
+          </a>
         </div>
       </div>
     </section>

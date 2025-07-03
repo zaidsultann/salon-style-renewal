@@ -1,71 +1,43 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 
 const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [failedImages, setFailedImages] = useState(new Set());
+
   const galleryItems = [
-    { id: 1, image: '/public/images/gallery/bob-cut.jpg' },
-    { id: 2, image: '/public/images/gallery/layered-cut.jpg' },
-    { id: 3, image: '/public/images/gallery/balayage.jpg' },
-    { id: 4, image: '/public/images/gallery/pixie-cut.jpg' },
-    { id: 5, image: '/public/images/gallery/ombre.jpg' },
-    { id: 6, image: '/public/images/gallery/wedding-updo.jpg' },
-    { id: 7, image: '/public/images/gallery/full-highlights.jpg' },
-    { id: 8, image: '/public/images/gallery/long-layers.jpg' },
-    { id: 9, image: '/public/images/gallery/beach-waves.jpg' },
-    { id: 10, image: '/public/images/gallery/fashion-colors.jpg' },
-    { id: 11, image: '/public/images/gallery/shag-cut.jpg' },
-    { id: 12, image: '/public/images/gallery/formal-style.jpg' },
-    { id: 13, image: '/public/images/gallery/keratin.jpg' },
-    { id: 14, image: '/public/images/gallery/blunt-cut.jpg' },
-    { id: 15, image: '/public/images/gallery/classic-fade.jpg' },
-    { id: 16, image: '/public/images/gallery/curly-blowout.jpg' },
-    { id: 17, image: '/public/images/gallery/textured-lob.jpg' },
-    { id: 18, image: '/public/images/gallery/lowlights.jpg' },
-    { id: 19, image: '/public/images/gallery/beard-trim.jpg' },
-    { id: 20, image: '/public/images/gallery/sleek-straight.jpg' },
-    { id: 21, image: '/public/images/gallery/curtain-bangs.jpg' },
-    { id: 22, image: '/public/images/gallery/color-correction.jpg' },
-    { id: 23, image: '/public/images/gallery/pompadour.jpg' },
-    { id: 24, image: '/public/images/gallery/half-up.jpg' },
-    { id: 25, image: '/public/images/gallery/asymmetrical.jpg' },
-    { id: 26, image: '/public/images/gallery/platinum.jpg' },
-    { id: 27, image: '/public/images/gallery/textured-crop.jpg' },
-    { id: 28, image: '/public/images/gallery/braided-updo.jpg' },
-    { id: 29, image: '/public/images/gallery/face-framing.jpg' },
-    { id: 30, image: '/public/images/gallery/copper.jpg' },
-    { id: 31, image: '/public/images/gallery/undercut.jpg' },
-    { id: 32, image: '/public/images/gallery/vintage-waves.jpg' },
-    { id: 33, image: '/public/images/gallery/wolf-cut.jpg' },
-    { id: 34, image: '/public/images/gallery/chocolate-brown.jpg' },
-    { id: 35, image: '/public/images/gallery/business-cut.jpg' },
-    { id: 36, image: '/public/images/gallery/messy-bun.jpg' },
-    { id: 37, image: '/public/images/gallery/classic-bob.jpg' },
-    { id: 38, image: '/public/images/gallery/ash-blonde.jpg' },
-    { id: 39, image: '/public/images/gallery/buzz-cut.jpg' },
-    { id: 40, image: '/public/images/gallery/side-swept.jpg' },
-    { id: 41, image: '/public/images/gallery/root-touchup.jpg' },
-    { id: 42, image: '/public/images/gallery/crew-cut.jpg' },
-    { id: 43, image: '/public/images/gallery/twisted-updo.jpg' },
-    { id: 44, image: '/public/images/gallery/red-highlights.jpg' },
-    { id: 45, image: '/public/images/gallery/voluminous-curls.jpg' },
-    { id: 46, image: '/public/images/gallery/deep-conditioning.jpg' },
-    { id: 47, image: '/public/images/gallery/bridal-updo-1.jpg' },
-    { id: 48, image: '/public/images/gallery/scalp-treatment.jpg' },
-    { id: 49, image: '/public/images/gallery/bridal-half-up.jpg' },
-    { id: 50, image: '/public/images/gallery/hair-repair.jpg' },
-    { id: 51, image: '/public/images/gallery/bridal-braided.jpg' },
-    { id: 52, image: '/public/images/gallery/glossing.jpg' },
-    { id: 53, image: '/public/images/gallery/bridal-vintage.jpg' },
-    { id: 54, image: '/public/images/gallery/protein-treatment.jpg' },
-    { id: 55, image: '/public/images/gallery/bridal-romantic.jpg' },
-    { id: 56, image: '/public/images/gallery/olaplex.jpg' },
-    { id: 57, image: '/public/images/gallery/bridal-modern.jpg' },
-    { id: 58, image: '/public/images/gallery/brazilian-blowout.jpg' },
-    { id: 59, image: '/public/images/gallery/tape-extensions.jpg' },
-    { id: 60, image: '/public/images/gallery/clip-extensions.jpg' },
-    { id: 61, image: '/public/images/gallery/sew-extensions.jpg' },
-    { id: 62, image: '/public/images/gallery/fusion-extensions.jpg' }
+    { id: 1, image: '/images/gallery/pic (12).jpg' },
+    { id: 2, image: '/images/gallery/pic (4).jpg' },
+    { id: 3, image: '/images/gallery/pic (9).jpg' },
+    { id: 4, image: '/images/gallery/pic (1).jpg' },
+    { id: 5, image: '/images/gallery/pic (16).jpg' },
+    { id: 6, image: '/images/gallery/pic (7).jpg' },
+    { id: 7, image: '/images/gallery/pic (13).jpg' },
+    { id: 8, image: '/images/gallery/pic (6).jpg' },
+    { id: 9, image: '/images/gallery/pic (3).jpg' },
+    { id: 10, image: '/images/gallery/pic (15).jpg' },
+    { id: 11, image: '/images/gallery/pic (10).jpg' },
+    { id: 12, image: '/images/gallery/pic (8).jpg' },
+    { id: 13, image: '/images/gallery/pic (14).jpg' },
+    { id: 14, image: '/images/gallery/pic (5).jpg' },
+    { id: 15, image: '/images/gallery/pic (11).jpg' },
+    { id: 16, image: '/images/gallery/pic (2).jpg' },
+    { id: 17, image: '/images/gallery/pic (17).jpg' },
+    { id: 18, image: '/images/gallery/pic (18).jpg' },
+    { id: 19, image: '/images/gallery/pic (19).jpg' },
+    { id: 20, image: '/images/gallery/pic (20).jpg' },
   ];
+
+  const openModal = (item) => {
+    setSelectedImage(item);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
+  const handleImageError = (imageId) => {
+    setFailedImages(prev => new Set([...prev, imageId]));
+  };
 
   return (
     <div className="py-12 md:py-20 bg-white">
@@ -85,11 +57,22 @@ const Gallery = () => {
             <div
               key={item.id}
               className="group relative overflow-hidden rounded-lg bg-gradient-to-br from-rose-100 to-amber-100 aspect-square cursor-pointer hover:shadow-xl transition-all duration-300"
+              onClick={() => openModal(item)}
             >
+              <img
+                src={item.image}
+                alt={`Hair style transformation ${item.id}`}
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                onError={() => handleImageError(item.id)}
+                style={{ display: failedImages.has(item.id) ? 'none' : 'block' }}
+              />
               <div className="absolute inset-0 bg-black/10 group-hover:bg-black/30 transition-all duration-300"></div>
-              <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs md:text-sm text-center p-2 md:p-4">
-                [Hair Style Image]
-              </div>
+              {/* Fallback content - shown if image fails to load */}
+              {failedImages.has(item.id) && (
+                <div className="absolute inset-0 flex items-center justify-center text-gray-500 text-xs md:text-sm text-center p-2 md:p-4">
+                  [Hair Style Image {item.id}]
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -110,6 +93,35 @@ const Gallery = () => {
           </a>
         </div>
       </div>
+
+      {/* Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="relative max-w-4xl max-h-full">
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl font-bold z-10 bg-black bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center"
+            >
+              ×
+            </button>
+            
+            {/* Modal image */}
+            {!failedImages.has(selectedImage.id) ? (
+              <img
+                src={selectedImage.image}
+                alt={`Hair style transformation ${selectedImage.id}`}
+                className="w-96 h-96 object-cover rounded-lg"
+                onError={() => handleImageError(selectedImage.id)}
+              />
+            ) : (
+              <div className="flex items-center justify-center text-white text-lg bg-gray-800 rounded-lg w-96 h-96">
+                [Hair Style Image {selectedImage.id}]
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,19 +1,28 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
+  const backgroundImage = '/images/gallery/salon-background.png';
+
   return (
-    <section className="relative h-screen flex items-center justify-center">
-      {/* Background Image Placeholder - Replace with actual salon image */}
-      <div className="absolute inset-0 bg-gradient-to-r from-rose-100 to-amber-50">
-        <div className="absolute inset-0 bg-black/20"></div>
-        {/* TODO: Add hero background image here */}
-        <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-lg">
-          [Hero Background Image - Beautiful salon interior or styled hair]
-        </div>
-      </div>
+    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Blurred Background Image */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          filter: 'blur(4px)', // Adjust blur strength here (2px–8px recommended)
+          transform: 'scale(1.05)', // Optional: zoom slightly to hide edges from blur
+        }}
+      />
       
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30" />
+
+      {/* Foreground content */}
       <div className="relative z-10 text-center text-white max-w-4xl px-4">
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">
           Velvet Salon
