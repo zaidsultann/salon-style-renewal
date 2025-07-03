@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [failedImages, setFailedImages] = useState(new Set());
+  const [failedImages, setFailedImages] = useState(new Set<number>());
 
   const galleryItems = [
     { id: 1, image: '/images/gallery/pic (12).jpg' },
@@ -27,7 +28,7 @@ const Gallery = () => {
     { id: 20, image: '/images/gallery/pic (20).jpg' },
   ];
 
-  const openModal = (item) => {
+  const openModal = (item: { id: number; image: string }) => {
     setSelectedImage(item);
   };
 
@@ -35,7 +36,7 @@ const Gallery = () => {
     setSelectedImage(null);
   };
 
-  const handleImageError = (imageId) => {
+  const handleImageError = (imageId: number) => {
     setFailedImages(prev => new Set([...prev, imageId]));
   };
 
@@ -85,12 +86,12 @@ const Gallery = () => {
           <p className="text-gray-600 mb-6 text-sm md:text-base">
             Contact us to discuss your dream hairstyle
           </p>
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-6 md:px-8 py-2 md:py-3 rounded-full transition-colors duration-300 text-sm md:text-base"
           >
             Get In Touch
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -102,10 +103,11 @@ const Gallery = () => {
             <button
               onClick={closeModal}
               className="absolute -top-10 right-0 text-white hover:text-gray-300 text-2xl font-bold z-10 bg-black bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center"
+              aria-label="Close modal"
             >
               ×
             </button>
-            
+
             {/* Modal image */}
             {!failedImages.has(selectedImage.id) ? (
               <img
