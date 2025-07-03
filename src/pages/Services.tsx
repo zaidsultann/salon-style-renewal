@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';  // <-- THIS LINE IS NEEDED
 import { ChevronDown, ChevronUp, X } from 'lucide-react';
 
 // Location Selector Component
@@ -325,46 +326,47 @@ const Services = () => {
           ))}
         </div>
 
-        {/* Additional Information */}
-        <div className="mt-16 bg-gradient-to-r from-rose-50 to-amber-50 rounded-lg p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
-                Important Notes
-              </h3>
-              <ul className="text-gray-600 space-y-2">
-                <li>• All prices are starting prices and may vary based on hair length and condition</li>
-                <li>• Color correction pricing determined after consultation</li>
-                <li>• Extension prices vary based on hair type and length needed</li>
-                <li>• Bridal services require advance booking and trial recommended</li>
-                <li>• On-location services include travel fee</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
-                Book Your Service
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Ready to schedule your appointment? Contact us for a consultation or book online.
-              </p>
-              <div className="space-y-3">
-                <button
-                  onClick={() => setIsLocationSelectorOpen(true)}
-                  className="inline-block w-full md:w-auto bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full text-center transition-colors duration-300"
-                >
-                  Call Us
-                </button>
-                <a
-                  href="./contact.html"
-                  className="inline-block w-full md:w-auto ml-0 md:ml-4 border-2 border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white font-semibold px-8 py-3 rounded-full text-center transition-all duration-300"
-                >
-                  Contact
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+{/* Additional Information */}
+<div className="mt-16 bg-gradient-to-r from-rose-50 to-amber-50 rounded-lg p-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
+        Important Notes
+      </h3>
+      <ul className="text-gray-600 space-y-2">
+        <li>• All prices are starting prices and may vary based on hair length and condition</li>
+        <li>• Color correction pricing determined after consultation</li>
+        <li>• Extension prices vary based on hair type and length needed</li>
+        <li>• Bridal services require advance booking and trial recommended</li>
+        <li>• On-location services include travel fee</li>
+      </ul>
+    </div>
+    <div>
+      <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">
+        Book Your Service
+      </h3>
+      <p className="text-gray-600 mb-6">
+        Ready to schedule your appointment? Contact us for a consultation or book online.
+      </p>
+      <div className="space-y-3">
+        <button
+          onClick={() => setIsLocationSelectorOpen(true)}
+          className="inline-block w-full md:w-auto bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full text-center transition-colors duration-300"
+        >
+          Call Us
+        </button>
+        <Link
+          to="/contact"
+          className="inline-block w-full md:w-auto ml-0 md:ml-4 border-2 border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white font-semibold px-8 py-3 rounded-full text-center transition-all duration-300"
+        >
+          Contact
+        </Link>
       </div>
+    </div>
+  </div>
+</div>
+</div>
+
       
       <LocationSelector 
         isOpen={isLocationSelectorOpen}
