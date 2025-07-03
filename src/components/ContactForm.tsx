@@ -6,8 +6,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 
-// Update this email to where submissions should be sent
-const EMAIL_TO = "salon@example.com";
+// CONFIGURATION: Update these settings for your salon
+// 1. Replace YOUR_FORM_ID below with your actual Formspree form ID
+// 2. Update EMAIL_TO to your salon's email address (this is just for reference)
+const EMAIL_TO = "salon@example.com"; // Your salon's email address
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
