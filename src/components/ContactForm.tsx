@@ -43,7 +43,7 @@ const ContactForm = () => {
 
     try {
       const data = new FormData();
-      data.append('form-name', 'contact');
+      data.append('form-name', 'salon-style-renewal');
       Object.entries(formData).forEach(([key, value]) => data.append(key, value));
 
       await fetch('/', {
@@ -79,7 +79,7 @@ const ContactForm = () => {
         )}
 
         {/* Netlify’s hidden dummy form for build-time detection */}
-        <form name="contact" data-netlify="true" hidden>
+        <form name="salon-style-renewal" data-netlify="true" hidden>
           <input type="text" name="firstName" />
           <input type="text" name="lastName" />
           <input type="email" name="email" />
@@ -88,8 +88,8 @@ const ContactForm = () => {
         </form>
 
         {/* Actual visible form */}
-        <form onSubmit={handleSubmit} name="contact" data-netlify="true" className="space-y-6">
-          <input type="hidden" name="form-name" value="contact" />
+        <form onSubmit={handleSubmit} name="salon-style-renewal" data-netlify="true" className="space-y-6">
+          <input type="hidden" name="form-name" value="salon-style-renewal" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
