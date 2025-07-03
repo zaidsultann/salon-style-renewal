@@ -53,6 +53,9 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Clear any previous messages
+    setMessage({ text: '', type: '' });
+    
     if (!validateForm()) return;
 
     setIsLoading(true);
@@ -82,6 +85,8 @@ const ContactForm = () => {
           phone: '',
           message: ''
         });
+        // Clear success message after 5 seconds
+        setTimeout(() => setMessage({ text: '', type: '' }), 5000);
       } else {
         throw new Error('Failed to send message');
       }
@@ -124,7 +129,8 @@ const ContactForm = () => {
           <textarea name="message"></textarea>
         </form>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} name="contact" data-netlify="true" className="space-y-6">
+          <input type="hidden" name="form-name" value="contact" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
