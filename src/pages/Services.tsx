@@ -356,7 +356,7 @@ const Services = () => {
                   Call Us
                 </button>
                 <a
-                  href="/contact"
+                  href="./contact.html"
                   className="inline-block w-full md:w-auto ml-0 md:ml-4 border-2 border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white font-semibold px-8 py-3 rounded-full text-center transition-all duration-300"
                 >
                   Contact
