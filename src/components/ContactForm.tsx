@@ -114,7 +114,7 @@ const ContactForm = () => {
         {/* Hidden form for Netlify Forms detection */}
         <form 
           name="contact" 
-          netlify="true" 
+          data-netlify="true" 
           hidden
         >
           <input type="text" name="firstName" />
