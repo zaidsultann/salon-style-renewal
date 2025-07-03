@@ -20,7 +20,6 @@ const ContactForm = () => {
     const newToast = { id, title, description, variant };
     setToasts(prev => [...prev, newToast]);
     
-    // Auto remove toast after 5 seconds
     setTimeout(() => {
       setToasts(prev => prev.filter(toast => toast.id !== id));
     }, 5000);
@@ -61,6 +60,12 @@ const ContactForm = () => {
     return true;
   };
 
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -72,14 +77,10 @@ const ContactForm = () => {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
+        body: encode({
           'form-name': 'contact',
-          'firstName': formData.firstName,
-          'lastName': formData.lastName,
-          'email': formData.email,
-          'phone': formData.phone,
-          'message': formData.message
-        }).toString()
+          ...formData
+        })
       });
 
       if (response.ok) {
@@ -92,10 +93,10 @@ const ContactForm = () => {
           message: ''
         });
       } else {
-        throw new Error('Failed to send message');
+        throw new Error('Network response was not ok');
       }
     } catch (error) {
-      console.error('Error sending form:', error);
+      console.error('Error:', error);
       showToast("Error", "Failed to send message. Please try again or call us directly.", "destructive");
     } finally {
       setIsLoading(false);
@@ -126,16 +127,15 @@ const ContactForm = () => {
           Send Us a Message
         </h2>
         
-        {/* Hidden form for Netlify detection */}
-        <form name="contact" data-netlify="true" hidden>
-          <input type="text" name="firstName" />
-          <input type="text" name="lastName" />
-          <input type="email" name="email" />
-          <input type="tel" name="phone" />
-          <textarea name="message"></textarea>
-        </form>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form 
+          name="contact" 
+          method="POST" 
+          data-netlify="true" 
+          onSubmit={handleSubmit}
+          className="space-y-6"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
