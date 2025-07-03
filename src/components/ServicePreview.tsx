@@ -99,10 +99,25 @@ const ServicePreview = () => {
     }
   };
 
-  // OPTION 3A: Navigation handler (React Router alternative)
+  // OPTION 3A: Navigation handler with better error handling
   const handleNavigation = (path) => {
-    // For React Router, replace with: navigate(path)
-    window.location.href = path;
+    try {
+      // For React Router, replace with: navigate(path)
+      // Check if we're in a client-side routing app
+      if (window.history && window.history.pushState) {
+        // Try client-side navigation first
+        window.history.pushState(null, '', path);
+        // Trigger a popstate event to update the app
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      } else {
+        // Fallback to full page navigation
+        window.location.href = path;
+      }
+    } catch (error) {
+      console.log('Navigation fallback:', error);
+      // Ultimate fallback
+      window.location.href = path;
+    }
   };
 
   // OPTION 8: Check if image loaded successfully
@@ -159,23 +174,28 @@ const ServicePreview = () => {
         </div>
 
         <div className="text-center mt-6">
-          {/* OPTION 3A: Button with navigation handler */}
-          <button
-            onClick={() => handleNavigation('/services')}
-            className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300"
-          >
-            View All Services
-          </button>
+          {/* OPTION 3A: Multiple navigation approaches */}
+          <div className="space-y-2">
+            <button
+              onClick={() => handleNavigation('/services')}
+              className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300 mr-4"
+            >
+              View All Services
+            </button>
+            
+            {/* OPTION 3B: Direct link as backup */}
+            <a
+              href="/services"
+              className="inline-block border-2 border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300"
+            >
+              Services Page
+            </a>
+          </div>
           
-          {/* OPTION 3B: React Router Link (uncomment if using React Router) */}
-          {/* 
-          <Link
-            to="/services"
-            className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300"
-          >
-            View All Services
-          </Link>
-          */}
+          {/* OPTION 3C: Alternative navigation options */}
+          <div className="mt-4 text-sm text-gray-600">
+            <p>Having trouble? Try the direct link above or contact us</p>
+          </div>
         </div>
       </div>
     </section>
