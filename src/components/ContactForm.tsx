@@ -69,6 +69,7 @@ const ContactForm = () => {
           Send Us a Message
         </h2>
 
+        {/* Message display */}
         {message.text && (
           <div className={`mb-4 p-4 rounded-lg ${
             message.type === 'error' ? 'bg-red-50 border border-red-200 text-red-700' :
@@ -78,7 +79,7 @@ const ContactForm = () => {
           </div>
         )}
 
-        {/* Netlify’s hidden dummy form for build-time detection */}
+        {/* Netlify hidden dummy form */}
         <form name="salon-style-renewal" data-netlify="true" hidden>
           <input type="text" name="firstName" />
           <input type="text" name="lastName" />
@@ -87,9 +88,16 @@ const ContactForm = () => {
           <textarea name="message" />
         </form>
 
-        {/* Actual visible form */}
-        <form onSubmit={handleSubmit} name="salon-style-renewal" data-netlify="true" className="space-y-6">
+        {/* Actual form users submit */}
+        <form
+          name="salon-style-renewal"
+          method="POST"
+          data-netlify="true"
+          onSubmit={handleSubmit}
+          className="space-y-6"
+        >
           <input type="hidden" name="form-name" value="salon-style-renewal" />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
@@ -100,20 +108,28 @@ const ContactForm = () => {
               <Input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
             </div>
           </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
             <Input type="email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Phone *</label>
             <Input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
           </div>
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
             <Textarea name="message" value={formData.message} onChange={handleChange} rows={4} required />
           </div>
+
           <div className="text-center">
-            <Button type="submit" disabled={isLoading} className="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300">
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="bg-rose-600 hover:bg-rose-700 text-white font-semibold px-8 py-3 rounded-full transition-colors duration-300"
+            >
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
