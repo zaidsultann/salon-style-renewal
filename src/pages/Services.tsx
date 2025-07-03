@@ -13,12 +13,12 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ isOpen, onClose }) 
     {
       name: 'Main Location',
       address: '1075 Ceremonial Dr, Unit 6, Mississauga, ON L5R 2Z4',
-      phone: '(905) 507-4965'
+      phone: '(905) 507-4005'
     },
     {
       name: 'Second Location',
       address: '3050 Artesian Dr, Unit 7, Mississauga, ON L5M 7P5',
-      phone: '(905) 828-4347'
+      phone: '(905) 828-4247'
     }
   ];
 
@@ -60,7 +60,7 @@ const LocationSelector: React.FC<LocationSelectorProps> = ({ isOpen, onClose }) 
 };
 
 const Services = () => {
-  const [openSections, setOpenSections] = useState<string[]>(['cuts']);
+  const [openSections, setOpenSections] = useState<string[]>([]);
   const [isLocationSelectorOpen, setIsLocationSelectorOpen] = useState(false);
 
   const toggleSection = (section: string) => {

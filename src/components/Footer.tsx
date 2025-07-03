@@ -54,7 +54,7 @@ const Footer = () => {
                 <p>(905) 507-4005</p>
               </div>
               
-              <div className="flex justify-center">
+              <div className="flex justify-left">
                 <Separator className="w-16 h-px bg-gray-600" />
               </div>
               
@@ -68,7 +68,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright and Attribution */}
-        <div className="mt-8 pt-8 border-t border-gray-700 text-left text-gray-300">
+        <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-300">
           <p className="mb-1">Copyright © 2025 Velvet Salon</p>
           <p>
             Powered by{' '}
